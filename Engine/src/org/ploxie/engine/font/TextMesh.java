@@ -24,9 +24,9 @@ import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.shaders.Shader;
 import org.ploxie.engine.utils.BufferUtils;
 import org.ploxie.engine.utils.VertexStream;
-import org.ploxie.math.matrix.Matrix4f;
-import org.ploxie.math.vector.Vector2f;
-import org.ploxie.math.vector.Vector3f;
+import org.ploxie.utils.math.matrix.Matrix4f;
+import org.ploxie.utils.math.vector.Vector2f;
+import org.ploxie.utils.math.vector.Vector3f;
 
 public class TextMesh implements Renderable , Locatable{
 

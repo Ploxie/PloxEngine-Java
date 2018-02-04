@@ -19,8 +19,7 @@ import org.ploxie.engine.input.Keyboard;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.scene.decorations.Updatable;
-import org.ploxie.math.vector.Vector2f;
-import org.ploxie.math.vector.Vector2i;
+import org.ploxie.utils.math.vector.Vector2f;
 
 public class DebugInfo extends Component implements Updatable, Renderable, KeyboardListener, ObjectRenderedListener{
 

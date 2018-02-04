@@ -1,6 +1,6 @@
-package org.ploxie.math.vector;
+package org.ploxie.utils.math.vector;
 
-import org.ploxie.math.Math;
+import org.ploxie.utils.math.Math;
 
 public class Vector3i implements Cloneable {
 

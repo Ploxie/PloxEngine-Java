@@ -1,6 +1,6 @@
 package org.ploxie.engine.display;
 
-import org.ploxie.math.vector.Vector2i;
+import org.ploxie.utils.math.vector.Vector2i;
 
 public class Viewport {
 

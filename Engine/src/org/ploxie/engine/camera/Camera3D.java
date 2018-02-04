@@ -1,7 +1,7 @@
 package org.ploxie.engine.camera;
 
 import org.ploxie.engine.scene.decorations.Locatable;
-import org.ploxie.math.matrix.Matrix4f;
+import org.ploxie.utils.math.matrix.Matrix4f;
 
 public class Camera3D extends Camera implements Locatable{
 

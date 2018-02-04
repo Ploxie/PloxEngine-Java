@@ -1,6 +1,6 @@
 package org.ploxie.engine.camera;
 
-import org.ploxie.math.matrix.Matrix4f;
+import org.ploxie.utils.math.matrix.Matrix4f;
 
 public abstract class Camera {
 

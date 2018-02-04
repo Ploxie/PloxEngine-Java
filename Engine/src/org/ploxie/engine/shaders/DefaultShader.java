@@ -1,7 +1,7 @@
 package org.ploxie.engine.shaders;
 
-import org.ploxie.math.vector.Vector3f;
 import org.ploxie.utils.ResourceLoader;
+import org.ploxie.utils.math.vector.Vector3f;
 
 public class DefaultShader extends Shader {
 

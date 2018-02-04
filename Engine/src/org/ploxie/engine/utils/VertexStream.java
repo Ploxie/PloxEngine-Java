@@ -1,7 +1,7 @@
 package org.ploxie.engine.utils;
 
-import org.ploxie.math.vector.Vector2f;
-import org.ploxie.math.vector.Vector3f;
+import org.ploxie.utils.math.vector.Vector2f;
+import org.ploxie.utils.math.vector.Vector3f;
 
 public class VertexStream {
 

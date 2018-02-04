@@ -4,7 +4,7 @@ import org.ploxie.engine.buffers.BufferType;
 import org.ploxie.engine.buffers.VBO;
 import org.ploxie.engine.utils.BufferUtils;
 import org.ploxie.engine.utils.VertexStream;
-import org.ploxie.math.vector.Vector2f;
+import org.ploxie.utils.math.vector.Vector2f;
 
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 

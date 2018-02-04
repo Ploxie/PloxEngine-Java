@@ -1,4 +1,4 @@
-package org.ploxie.math.vector;
+package org.ploxie.utils.math.vector;
 
 public class Vector2f implements Cloneable {
 

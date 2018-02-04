@@ -1,6 +1,6 @@
-package org.ploxie.math;
+package org.ploxie.utils.math;
 
-public class FastMath {
+public class Math {
 
 	private static float[] SIN_TABLE;
 	public static boolean fastMode = true;
@@ -59,39 +59,32 @@ public class FastMath {
 
 	public static float convertHalfToFloat(int half) {
 		switch (half) {
-		case 0x0000:
-			return 0f;
-		case 0x8000:
-			return -0f;
-		case 0x7c00:
-			return Float.POSITIVE_INFINITY;
-		case 0xfc00:
-			return Float.NEGATIVE_INFINITY;
-			// TODO: Support for NaN?
-		default:
-			return Float.intBitsToFloat(((half & 0x8000) << 16)
-					| (((half & 0x7c00) + 0x1C000) << 13)
-					| ((half & 0x03FF) << 13));
+			case 0x0000:
+				return 0f;
+			case 0x8000:
+				return -0f;
+			case 0x7c00:
+				return Float.POSITIVE_INFINITY;
+			case 0xfc00:
+				return Float.NEGATIVE_INFINITY;
+				// TODO: Support for NaN?
+			default:
+				return Float.intBitsToFloat(((half & 0x8000) << 16) | (((half & 0x7c00) + 0x1C000) << 13) | ((half & 0x03FF) << 13));
 		}
 	}
 
 	public static int colorAsIntABGR(byte x, byte y, byte z, byte a) {
-		int abgr = ((a * 255 & 0xFF) << 24) | ((z * 255 & 0xFF) << 16)
-				| ((y * 255 & 0xFF) << 8) | ((x * 255 & 0xFF));
+		int abgr = ((a * 255 & 0xFF) << 24) | ((z * 255 & 0xFF) << 16) | ((y * 255 & 0xFF) << 8) | ((x * 255 & 0xFF));
 		return abgr;
 	}
 
 	public static byte[] intAsByteArray(int abgr) {
-		return new byte[] { (byte) ((abgr & 0x000000ff) / 255f),
-				(byte) (((abgr & 0x0000ff00) >> 8) / 255f),
-				(byte) (((abgr & 0x00ff0000) >> 16) / 255f),
-				(byte) ((((abgr & 0xff000000) >> 24) & 0x000000ff) / 255f) };
+		return new byte[] { (byte) ((abgr & 0x000000ff) / 255f), (byte) (((abgr & 0x0000ff00) >> 8) / 255f), (byte) (((abgr & 0x00ff0000) >> 16) / 255f), (byte) ((((abgr & 0xff000000) >> 24) & 0x000000ff) / 255f) };
 	}
 
 	public static short convertFloatToHalf(float flt) {
 		if (Float.isNaN(flt)) {
-			throw new UnsupportedOperationException(
-					"NaN to half conversion not supported!");
+			throw new UnsupportedOperationException("NaN to half conversion not supported!");
 		} else if (flt == Float.POSITIVE_INFINITY) {
 			return (short) 0x7c00;
 		} else if (flt == Float.NEGATIVE_INFINITY) {
@@ -111,12 +104,10 @@ public class FastMath {
 		}
 
 		int f = Float.floatToIntBits(flt);
-		return (short) (((f >> 16) & 0x8000)
-				| ((((f & 0x7f800000) - 0x38000000) >> 13) & 0x7c00) | ((f >> 13) & 0x03ff));
+		return (short) (((f >> 16) & 0x8000) | ((((f & 0x7f800000) - 0x38000000) >> 13) & 0x7c00) | ((f >> 13) & 0x03ff));
 	}
 
-	public static float interpolateLinear(float scale, float startValue,
-			float endValue) {
+	public static float interpolateLinear(float scale, float startValue, float endValue) {
 		if (startValue == endValue) {
 			return startValue;
 		}
@@ -132,8 +123,7 @@ public class FastMath {
 	public static float min(float a, float b) {
 		if (a != a)
 			return a; // a is NaN
-		if ((a == 0.0f) && (b == 0.0f)
-				&& (Float.floatToIntBits(b) == negativeZeroFloatBits)) {
+		if ((a == 0.0f) && (b == 0.0f) && (Float.floatToIntBits(b) == negativeZeroFloatBits)) {
 			return b;
 		}
 		return (a <= b) ? a : b;
@@ -146,8 +136,7 @@ public class FastMath {
 	public static float max(float a, float b) {
 		if (a != a)
 			return a; // a is NaN
-		if ((a == 0.0f) && (b == 0.0f)
-				&& (Float.floatToIntBits(b) == negativeZeroFloatBits)) {
+		if ((a == 0.0f) && (b == 0.0f) && (Float.floatToIntBits(b) == negativeZeroFloatBits)) {
 			return a;
 		}
 		return (a <= b) ? b : a;
@@ -238,10 +227,6 @@ public class FastMath {
 
 	public static int roundUp(int num, int divisor) {
 		return (num + divisor - 1) / divisor;
-	}
-
-	public static boolean is_power_of_two(int a) {
-		return a == (-a & a);
 	}
 
 }

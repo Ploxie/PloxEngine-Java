@@ -10,9 +10,9 @@ import org.ploxie.engine.input.Keyboard;
 import org.ploxie.engine.input.Mouse;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.decorations.Locatable;
-import org.ploxie.math.matrix.Matrix4f;
-import org.ploxie.math.vector.Vector2i;
-import org.ploxie.math.vector.Vector3f;
+import org.ploxie.utils.math.matrix.Matrix4f;
+import org.ploxie.utils.math.vector.Vector2i;
+import org.ploxie.utils.math.vector.Vector3f;
 
 public class FPSCamera extends Component implements Locatable, KeyboardListener, MouseListener {
 

@@ -2,7 +2,7 @@ package org.ploxie.engine.event.events;
 
 import org.ploxie.engine.event.Event;
 import org.ploxie.engine.event.EventListener;
-import org.ploxie.math.vector.Vector2i;
+import org.ploxie.utils.math.vector.Vector2i;
 
 public class MouseKeyEvent extends Event {
 

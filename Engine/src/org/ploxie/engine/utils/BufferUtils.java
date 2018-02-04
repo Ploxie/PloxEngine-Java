@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-import org.ploxie.math.matrix.Matrix4f;
+import org.ploxie.utils.math.matrix.Matrix4f;
 
 public class BufferUtils {
 

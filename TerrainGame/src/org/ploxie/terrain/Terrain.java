@@ -5,14 +5,15 @@ import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.decorations.Locatable;
 import org.ploxie.engine.scene.decorations.Renderable;
-import org.ploxie.math.matrix.Matrix4f;
+import org.ploxie.utils.math.matrix.Matrix3f;
+import org.ploxie.utils.math.matrix.Matrix4f;
 
 public class Terrain extends Component implements Renderable, Locatable{
 
 	private final VBO vbo;
 	private final int vertexCount;
 	private TerrainShader shader;
-	private Matrix4f transformation;
+	private Matrix3f transformation;
 	
 	public Terrain(VBO vbo, int vertexCount) {
 		this.vbo = vbo;

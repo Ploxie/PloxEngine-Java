@@ -3,7 +3,8 @@ package org.ploxie.engine.utils;
 import java.nio.FloatBuffer;
 
 import org.lwjgl.BufferUtils;
-import org.ploxie.math.vector.Vector3f;
+import org.ploxie.utils.math.vector.Vector3f;
+
 
 public class Color {
 

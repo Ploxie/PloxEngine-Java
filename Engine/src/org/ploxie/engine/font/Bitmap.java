@@ -8,8 +8,8 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import org.ploxie.engine.textures.Texture2D;
-import org.ploxie.math.vector.Vector2f;
 import org.ploxie.utils.CacheMap;
+import org.ploxie.utils.math.vector.Vector2f;
 
 public class Bitmap {
 

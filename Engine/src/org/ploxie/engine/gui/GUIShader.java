@@ -5,7 +5,7 @@ import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.camera.Camera2D;
 import org.ploxie.engine.shaders.Shader;
 import org.ploxie.engine.utils.Color;
-import org.ploxie.math.matrix.Matrix4f;
+import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.ResourceLoader;
 
 public class GUIShader extends Shader{

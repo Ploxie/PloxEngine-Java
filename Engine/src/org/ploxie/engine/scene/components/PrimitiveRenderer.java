@@ -7,8 +7,7 @@ import org.ploxie.engine.scene.decorations.Locatable;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.scene.decorations.Updatable;
 import org.ploxie.engine.shaders.PrimitiveShader;
-import org.ploxie.math.matrix.Matrix4f;
-import org.ploxie.math.vector.Vector3f;
+import org.ploxie.utils.math.matrix.Matrix4f;
 
 public class PrimitiveRenderer extends Component implements Renderable, Locatable, Updatable{
 

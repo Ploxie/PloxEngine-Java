@@ -1,13 +1,13 @@
-package org.ploxie.math.matrix;
+package org.ploxie.utils.math.matrix;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
-import org.ploxie.math.vector.Vector2f;
-import org.ploxie.math.vector.Vector3f;
-import org.ploxie.math.vector.Vector4f;
-import org.ploxie.math.FastMath;
-import org.ploxie.math.Math;
+import org.ploxie.utils.math.FastMath;
+import org.ploxie.utils.math.Math;
+import org.ploxie.utils.math.vector.Vector2f;
+import org.ploxie.utils.math.vector.Vector3f;
+import org.ploxie.utils.math.vector.Vector4f;
 
 public class Matrix4f implements Cloneable {
 

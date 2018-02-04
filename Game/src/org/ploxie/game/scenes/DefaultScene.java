@@ -10,9 +10,7 @@ import org.ploxie.engine.gui.GUIPanel;
 import org.ploxie.engine.scene.GameObject;
 import org.ploxie.engine.scene.Scene;
 import org.ploxie.engine.utils.Color;
-import org.ploxie.math.vector.Vector2f;
-import org.ploxie.math.vector.Vector2i;
-import org.ploxie.math.vector.Vector3f;
+import org.ploxie.utils.math.vector.Vector2f;
 
 public class DefaultScene extends Scene{
 

@@ -22,7 +22,6 @@ import org.ploxie.engine.Engine;
 import org.ploxie.engine.event.events.ObjectRenderedEvent;
 import org.ploxie.engine.utils.BufferUtils;
 import org.ploxie.engine.utils.VertexStream;
-import org.ploxie.math.vector.Vector3f;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;

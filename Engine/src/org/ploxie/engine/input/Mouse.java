@@ -7,7 +7,7 @@ import org.ploxie.engine.Engine;
 import org.ploxie.engine.display.Window;
 import org.ploxie.engine.event.events.MouseKeyEvent;
 import org.ploxie.engine.event.events.MouseMoveEvent;
-import org.ploxie.math.vector.Vector2i;
+import org.ploxie.utils.math.vector.Vector2i;
 
 import static org.lwjgl.glfw.GLFW.glfwSetCursorPosCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetScrollCallback;
