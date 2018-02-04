@@ -35,8 +35,7 @@ public abstract class Shader {
 		
 	protected void setDefaultUniforms() {
 		
-	}
-	
+	}	
 
 	public void bind() {
 		if(!defaulted) {
@@ -47,16 +46,20 @@ public abstract class Shader {
 		}
 	}
 
-	protected int addUniform(String uniform) {
+	protected int getUniform(String uniform) {
 		int uniformLocation = glGetUniformLocation(program, uniform);
 
 		if (uniformLocation == 0xFFFFFFFF) {
-			throw new RuntimeException("Failed to find uniform: " + uniform);
+			if(Engine.DEBUG) {
+				System.err.println("Failed to find uniform: " + uniform);
+			}else {				
+				throw new RuntimeException("Failed to find uniform: " + uniform);
+			}
 		}
 
 		uniforms.put(uniform, uniformLocation);
 		return uniformLocation;
-	}
+	}	
 
 	public void addVertexShader(String source) {
 		addProgram(source, GL_VERTEX_SHADER);
@@ -102,28 +105,28 @@ public abstract class Shader {
 		glAttachShader(program, shader);
 	}
 
-	protected void setUniform(String uniformName, int value) {
-		glUniform1i(uniforms.get(uniformName), value);
+	public void setUniform(String uniformName, int value) {
+		glUniform1i(getUniform(uniformName), value);
 	}
 
-	protected void setUniform(String uniformName, float value) {
-		glUniform1f(uniforms.get(uniformName), value);
+	public void setUniform(String uniformName, float value) {
+		glUniform1f(getUniform(uniformName), value);
 	}
 
-	protected void setUniform(String uniformName, Vector2f value) {
-		glUniform2f(uniforms.get(uniformName), value.x, value.y);
+	public void setUniform(String uniformName, Vector2f value) {
+		glUniform2f(getUniform(uniformName), value.x, value.y);
 	}
 
-	protected void setUniform(String uniformName, Vector3f value) {
-		glUniform3f(uniforms.get(uniformName), value.x, value.y, value.z);
+	public void setUniform(String uniformName, Vector3f value) {
+		glUniform3f(getUniform(uniformName), value.x, value.y, value.z);
 	}
 	
-	protected void setUniform(String uniformName, Color value) {
-		glUniform3f(uniforms.get(uniformName), value.getR(), value.getG(), value.getB());
+	public void setUniform(String uniformName, Color value) {
+		glUniform4f(getUniform(uniformName), value.getR(), value.getG(), value.getB(), value.getA());
 	}
 
-	protected void setUniform(String uniformName, Matrix4f value) {
-		glUniformMatrix4fv(uniforms.get(uniformName), false, BufferUtils.createFlippedBuffer(value));
+	public void setUniform(String uniformName, Matrix4f value) {
+		glUniformMatrix4fv(getUniform(uniformName), false, BufferUtils.createFlippedBuffer(value));
 	}
 
 }

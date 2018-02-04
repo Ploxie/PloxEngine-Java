@@ -9,12 +9,11 @@ import org.ploxie.engine.event.events.MouseMoveEvent;
 import org.ploxie.engine.input.Keyboard;
 import org.ploxie.engine.input.Mouse;
 import org.ploxie.engine.scene.components.Component;
-import org.ploxie.engine.scene.decorations.Locatable;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2i;
 import org.ploxie.utils.math.vector.Vector3f;
 
-public class FPSCamera extends Component implements Locatable, KeyboardListener, MouseListener {
+public class FPSCamera extends Component implements KeyboardListener, MouseListener {
 
 	private Camera3D camera;
 	private Vector3f speed;
@@ -71,8 +70,6 @@ public class FPSCamera extends Component implements Locatable, KeyboardListener,
 			position = camera.viewMatrix.getTranslation();
 		}else {
 		}
-		
-		setPosition(position);
 
 		
 		
@@ -93,14 +90,9 @@ public class FPSCamera extends Component implements Locatable, KeyboardListener,
 		yaw -= mouseDelta.x * 360 * delta;
 		pitch -= mouseDelta.y * 360 * delta;
 
-		setPosition(position);
 	}
 
-	@Override
-	public void setPosition(Vector3f position) {
-		this.position = position;
-		camera.viewMatrix.makeFPSViewMatrix(position, pitch, yaw);
-	}
+	
 
 
 	@Override
@@ -108,10 +100,6 @@ public class FPSCamera extends Component implements Locatable, KeyboardListener,
 
 	}
 
-	@Override
-	public Matrix4f getTransformation() {
-		return camera.viewMatrix;
-	}
 
 	@Override
 	public void onMouseHeld(MouseKeyEvent event) {

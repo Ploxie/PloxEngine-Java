@@ -2,6 +2,7 @@ package org.ploxie.engine.scene;
 
 import org.ploxie.engine.camera.Camera2D;
 import org.ploxie.engine.camera.Camera3D;
+import org.ploxie.engine.scene.components.ComponentManager;
 
 public abstract class Scene{
 
@@ -15,20 +16,21 @@ public abstract class Scene{
 		rootObject = new GameObject();
 	}
 	
-	public void update2D(Camera2D camera) {
-		gui.update(camera);
+	public void update() {
+		ComponentManager.getInstance().update();
 	}
 	
-	public void update3D(Camera3D camera) {
-		rootObject.update(camera);
+	public void render() {
+		ComponentManager.getInstance().render();
 	}
+	
 	
 	public void addGUIObject(GameObject object) {
-		gui.addChild(object);
+		
 	}
 	
 	public void addGameObject(GameObject object) {
-		rootObject.addChild(object);
+		
 	}
 			
 }

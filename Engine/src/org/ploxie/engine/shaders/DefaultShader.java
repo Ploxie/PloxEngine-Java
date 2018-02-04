@@ -14,7 +14,7 @@ public class DefaultShader extends Shader {
 
 		compileShader();
 
-		addUniform("color");
+		getUniform("color");
 	}
 
 	@Override

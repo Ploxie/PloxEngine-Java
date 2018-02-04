@@ -13,9 +13,9 @@ public class PrimitiveShader extends Shader{
 
 		compileShader();
 
-		addUniform("modelMatrix");
-		addUniform("viewMatrix");
-		addUniform("projectionMatrix");
+		getUniform("modelMatrix");
+		getUniform("viewMatrix");
+		getUniform("projectionMatrix");
 	}
 	
 	public void setUniforms(Camera camera,Matrix4f transform) {

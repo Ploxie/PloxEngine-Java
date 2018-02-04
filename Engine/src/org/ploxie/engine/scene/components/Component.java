@@ -4,14 +4,38 @@ import org.ploxie.engine.scene.GameObject;
 
 public abstract class Component {
 
-	protected GameObject parent;
-		
-	public GameObject getParent() {
-		return parent;
+	protected GameObject gameObject;
+	protected boolean isEnabled;
+	protected String name;
+	
+	public Component() {
+		isEnabled = true;
+		name = "Component";
 	}
 	
-	public void setParent(GameObject parent) {
-		this.parent = parent;
+	public Component(String name) {
+		isEnabled = true;
+		this.name = name;
+	}
+	
+	public GameObject getGameObject() {
+		return gameObject;
+	}
+	
+	public void setGameObject(GameObject parent) {
+		this.gameObject = parent;
+	}
+	
+	public boolean isEnabled() {
+		return isEnabled;
+	}	
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void awake() {
+		
 	}
 	
 	

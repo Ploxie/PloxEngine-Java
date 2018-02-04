@@ -1,9 +1,8 @@
 package org.ploxie.engine.camera;
 
-import org.ploxie.engine.scene.decorations.Locatable;
 import org.ploxie.utils.math.matrix.Matrix4f;
 
-public class Camera3D extends Camera implements Locatable{
+public class Camera3D extends Camera{
 
 	private float fovy;
 	private float zNear;
@@ -52,10 +51,6 @@ public class Camera3D extends Camera implements Locatable{
 		this.aspectRatio = aspectRatio;
 	}
 
-	@Override
-	public Matrix4f getTransformation() {
-		return viewMatrix;
-	}
 
 
 }

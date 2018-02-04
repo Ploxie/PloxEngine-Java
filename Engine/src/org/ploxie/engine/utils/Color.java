@@ -65,6 +65,10 @@ public class Color {
 	public float getB() {
 		return col.z;
 	}
+	
+	public float getA() {
+		return a;
+	}
 
 	public Color duplicate() {
 		return new Color(col.x, col.y, col.z);

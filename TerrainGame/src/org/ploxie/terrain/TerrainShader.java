@@ -18,9 +18,9 @@ public class TerrainShader extends Shader{
 		//addUniform("lightDirection");
 		//addUniform("lightColour");
 		//addUniform("lightBias");
-		addUniform("modelMatrix");	
-		addUniform("viewMatrix");	
-		addUniform("projectionMatrix");	
+		getUniform("modelMatrix");	
+		getUniform("viewMatrix");	
+		getUniform("projectionMatrix");	
 	}
 
 	public void setUniforms(Camera camera, Matrix4f transformation) {

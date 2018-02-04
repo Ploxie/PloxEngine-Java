@@ -19,6 +19,7 @@ import org.ploxie.engine.input.Keyboard;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.scene.decorations.Updatable;
+import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;
 
 public class DebugInfo extends Component implements Updatable, Renderable, KeyboardListener, ObjectRenderedListener{
@@ -44,7 +45,7 @@ public class DebugInfo extends Component implements Updatable, Renderable, Keybo
 	}
 
 	@Override
-	public void render(Camera camera) {
+	public void render() {
 		//System.out.println(polygonsRendered);
 		if (!toggle) {
 			return;
@@ -87,5 +88,6 @@ public class DebugInfo extends Component implements Updatable, Renderable, Keybo
 	public void update() {
 		polygonsRendered = 0;
 	}
+
 
 }

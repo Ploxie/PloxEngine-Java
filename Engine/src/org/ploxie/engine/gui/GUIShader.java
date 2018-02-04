@@ -6,6 +6,7 @@ import org.ploxie.engine.camera.Camera2D;
 import org.ploxie.engine.shaders.Shader;
 import org.ploxie.engine.utils.Color;
 import org.ploxie.utils.math.matrix.Matrix4f;
+import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.ResourceLoader;
 
 public class GUIShader extends Shader{
@@ -20,15 +21,15 @@ public class GUIShader extends Shader{
 
 		compileShader();
 		
-		addUniform("transformMatrix");
-		addUniform("orthoMatrix");
-		addUniform("color");
+		getUniform("transformMatrix");
+		getUniform("orthoMatrix");
+		getUniform("color");
 	}
 
 	public void setUniforms(Camera camera, Matrix4f transformation, Color color) {
 		setUniform("transformMatrix", transformation);
 		setUniform("orthoMatrix", Engine.getCamera2D().getProjectionMatrix());
-		setUniform("color", color);		
+		setUniform("color", color);
 	}
 
 }

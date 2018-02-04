@@ -7,11 +7,12 @@ out vec2 uv;
 
 uniform mat4 transformMatrix;
 uniform mat4 orthoMatrix;
-uniform vec3 color;
+uniform vec4 color;
 
 void main()
 {
 	uv = inUV;
-	gl_Position = orthoMatrix * transformMatrix* vec4(inVertex.xy, 0.0, 1.0);
+
+	gl_Position = orthoMatrix * transformMatrix* vec4(inVertex.xy, 0.0, 1.0);;
 
 }

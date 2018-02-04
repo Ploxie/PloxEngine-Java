@@ -19,7 +19,6 @@ import org.ploxie.engine.Engine;
 import org.ploxie.engine.buffers.BufferType;
 import org.ploxie.engine.buffers.VBO;
 import org.ploxie.engine.camera.Camera;
-import org.ploxie.engine.scene.decorations.Locatable;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.shaders.Shader;
 import org.ploxie.engine.utils.BufferUtils;
@@ -28,7 +27,7 @@ import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector3f;
 
-public class TextMesh implements Renderable , Locatable{
+public class TextMesh implements Renderable{
 
 	private VBO vbo;
 	private final Bitmap bitmap;
@@ -44,7 +43,7 @@ public class TextMesh implements Renderable , Locatable{
 		this.alignment = alignment;
 		this.shader = shader;
 		transform = new Matrix4f();
-		setPosition(location);
+	//	setPosition(location);
 
 		create(text, true);
 	}
@@ -55,7 +54,7 @@ public class TextMesh implements Renderable , Locatable{
 		this.alignment = alignment;
 		this.shader = shader;
 		transform = new Matrix4f();
-		setPosition(location);
+		//setPosition(location);
 		
 		create("", false);
 	}
@@ -124,25 +123,21 @@ public class TextMesh implements Renderable , Locatable{
 	
 	public void render(final CharSequence text) {
 		create(text, false);
-		render(Engine.getCamera2D());
+		render();
 	}
 
 	@Override
-	public void render(Camera camera) {
+	public void render() {
 				
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		shader.bind();
-		shader.setUniforms(camera, transform, bitmap.getBitmap());
+		//shader.setUniforms(camera, transform, bitmap.getBitmap());
 		
 		vbo.draw();
 	}
 
-	@Override
-	public Matrix4f getTransformation() {
-		return transform;
-	}
 
 }

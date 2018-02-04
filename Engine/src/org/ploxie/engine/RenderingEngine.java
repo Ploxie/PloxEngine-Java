@@ -23,15 +23,15 @@ public class RenderingEngine {
 
 		GameObject debugObject = new GameObject();
 		debugInfo = new DebugInfo();
-		debugObject.addComponent("DebugInfo", debugInfo);
+		//debugObject.addComponent("DebugInfo", debugInfo);
 		scene.addGameObject(debugObject);
 	}
 
 	public void update() {
 		GL11.glClearColor(0.5f, 0.5f, 0.55f, 0f);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		scene.update3D(Engine.getCamera3D());
-		scene.update2D(Engine.getCamera2D());
+		scene.update();
+		scene.render();
 
 		debugInfo.update();
 		window.swapBuffers();

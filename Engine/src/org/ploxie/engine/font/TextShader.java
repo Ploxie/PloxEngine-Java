@@ -25,9 +25,9 @@ public class TextShader extends Shader {
 
 		compileShader();
 		
-		addUniform("transformMatrix");
-		addUniform("orthoMatrix");
-		addUniform("bitmapSampler");
+		getUniform("transformMatrix");
+		getUniform("orthoMatrix");
+		getUniform("bitmapSampler");
 
 	}
 	

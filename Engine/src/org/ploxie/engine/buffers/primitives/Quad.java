@@ -10,13 +10,13 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 
 public class Quad extends VBO{
 
-	public Quad(float width, float height) {
+	public Quad() {
 		VertexStream stream = new VertexStream(6 * 2);
 		
 		stream.append(new Vector2f(0,0));
-		stream.append(new Vector2f(0,height));
-		stream.append(new Vector2f(width,0));
-		stream.append(new Vector2f(width,height));
+		stream.append(new Vector2f(0,1));
+		stream.append(new Vector2f(1,0));
+		stream.append(new Vector2f(1,1));
 		
 		int[] indices = new int[] {0,1,2, 2,1,3};
 		

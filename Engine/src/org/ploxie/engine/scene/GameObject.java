@@ -1,67 +1,80 @@
 package org.ploxie.engine.scene;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.scene.components.Component;
+import org.ploxie.engine.scene.components.ComponentManager;
+import org.ploxie.engine.scene.components.Transform;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.scene.decorations.Updatable;
 
 public class GameObject {
 
+	protected String name;
 	protected GameObject parent;
+	protected Transform transform;
+
+	protected List<Component> components;
 	protected List<GameObject> children;
-	protected HashMap<String, Component> components;
 
-	public GameObject(Component...components) {
-		setChildren(new ArrayList<GameObject>());
-		this.components = new HashMap<String, Component>();
-		for(Component c : components) {
-			addComponent(c.toString(), c);
-		}
+	public GameObject() {
+		transform = new Transform();
+		components = new ArrayList<Component>();
+		children = new ArrayList<GameObject>();
+		addComponent(transform);
 	}
 
-	public void addComponent(String identifier, Component component) {
-		component.setParent(this);
-		components.put(identifier, component);
+	public GameObject(String name) {
+		this.name = name;
+		transform = new Transform();
+		components = new ArrayList<Component>();
+		children = new ArrayList<GameObject>();
+		addComponent(transform);
 	}
 
-	public void addChild(GameObject child) {
-		child.setParent(this);
-		children.add(child);
+	public void addComponent(Component component) {
+
+		component.setGameObject(this);
+		components.add(component);
+		ComponentManager.getInstance().addComponent(component);
+
+		component.awake();
 	}
 
-	protected void update(Camera camera) {
-		for (Component component : components.values()) {
-			if (component instanceof Updatable) {
-				((Updatable) component).update();
+	public void removeComponent(Component component) {
+		components.remove(component);
+		ComponentManager.getInstance().removeComponent(component);
+	}
+
+	public Component getComponent(String name) {
+		for (Component c : components) {
+			if (c.getName().equals(name)) {
+				return c;
 			}
-			if (component instanceof Renderable) {
-				((Renderable) component).render(camera);
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T extends Component> T getComponent(Class<T> type) {
+		for (Component c : components) {
+			if (c.getClass().equals(type)) {
+				return (T) c;
 			}
 		}
-
-		for (GameObject child : children) {
-			child.update(camera);
-		}
+		return null;
 	}
 
 	public GameObject getParent() {
 		return parent;
 	}
 
-	public void setParent(GameObject parent) {
-		this.parent = parent;
-	}
-
-	public List<GameObject> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<GameObject> children) {
-		this.children = children;
+	public Transform getTransform() {
+		return transform;
 	}
 
 }

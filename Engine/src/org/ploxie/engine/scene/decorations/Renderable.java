@@ -4,6 +4,6 @@ import org.ploxie.engine.camera.Camera;
 
 public interface Renderable{
 
-	public void render(Camera camera);
+	public void render();
 	
 }
