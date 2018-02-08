@@ -2,12 +2,13 @@
 
 in vec2 uv;
 
-out vec4 color;
+out vec4 outColor;
 
 uniform sampler2D bitmapSampler;
+uniform vec4 color;
 
 void main()
 {
     vec4 c = texture(bitmapSampler, uv);
-    color = vec4(c.xyzw);
+    outColor = c;
 }

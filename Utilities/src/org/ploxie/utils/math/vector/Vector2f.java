@@ -44,7 +44,7 @@ public class Vector2f implements Cloneable {
 		y(y() + o.y());
 		return this;
 	}
-
+	
 	public Vector2f subtract(final Vector2f o) {
 		x(x() - o.x());
 		y(y() - o.y());
@@ -69,6 +69,12 @@ public class Vector2f implements Cloneable {
 		return this;
 	}
 
+	public Vector2f multiply(final float s) {
+		x(x() * s);
+		y(y() * s);
+		return this;
+	}
+	
 	@Override
 	public Vector2f clone() {
 		return new Vector2f(x(), y());

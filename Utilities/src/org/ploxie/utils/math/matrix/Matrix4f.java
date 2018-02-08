@@ -317,10 +317,10 @@ public class Matrix4f implements Cloneable {
 	}
 	
 	public Matrix4f makeFPSViewMatrix(Vector3f eye, float pitch, float yaw) {
-		float cosPitch = FastMath.cos(FastMath.toRadians(pitch));
-		float sinPitch = FastMath.sin(FastMath.toRadians(pitch));
-		float cosYaw = FastMath.cos(FastMath.toRadians(yaw));
-		float sinYaw = FastMath.sin(FastMath.toRadians(yaw));
+		float cosPitch = Math.cos(FastMath.toRadians(pitch));
+		float sinPitch = Math.sin(FastMath.toRadians(pitch));
+		float cosYaw = Math.cos(FastMath.toRadians(yaw));
+		float sinYaw = Math.sin(FastMath.toRadians(yaw));
 		
 		Vector3f xaxis = new Vector3f(cosYaw, 0, -sinYaw);
 		Vector3f yaxis = new Vector3f(sinYaw * sinPitch, cosPitch, cosYaw * sinPitch);
@@ -434,6 +434,10 @@ public class Matrix4f implements Cloneable {
 		return result.toString();
 	}
 
+	public void setTranslation(float x, float y, float z) {
+		setRow(3, x, y, z, 1.0f);
+	}
+	
 	public void setTranslation(Vector3f pos) {
 		setRow(3, pos.x, pos.y, pos.z, 1.0f);
 	}

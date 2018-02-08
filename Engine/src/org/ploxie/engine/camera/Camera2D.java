@@ -1,7 +1,7 @@
 package org.ploxie.engine.camera;
 
 import org.ploxie.engine.Engine;
-import org.ploxie.engine.display.Viewport;
+import org.ploxie.utils.Viewport;
 import org.ploxie.utils.math.matrix.Matrix4f;
 
 public class Camera2D extends Camera{

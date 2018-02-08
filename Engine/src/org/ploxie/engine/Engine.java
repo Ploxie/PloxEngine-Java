@@ -3,12 +3,12 @@ package org.ploxie.engine;
 import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.camera.Camera2D;
 import org.ploxie.engine.camera.Camera3D;
-import org.ploxie.engine.display.Viewport;
 import org.ploxie.engine.display.Window;
 import org.ploxie.engine.event.EventManager;
 import org.ploxie.engine.input.Input;
 import org.ploxie.engine.scene.Scene;
 import org.ploxie.engine.utils.FPSCounter;
+import org.ploxie.utils.Viewport;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.glfwSetErrorCallback;
@@ -100,26 +100,23 @@ public class Engine {
 				stop();
 			}
 
-			try {
 				
 				
 				
 				
 				fpsCounter.update();
 				
-				input.update();
+				//System.out.println(input.getMouse().getMouseDelta());
 
 				renderingEngine.update();
-				
-				//Thread.sleep(1);
-
-			} catch (Exception e) {
-				
-				if (DEBUG) {
+				input.update();
+				/*try {
+					Thread.sleep((long) (1000.0 / 1000.0));
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
-					stop();
-				}
-			}
+				}*/
+
 		}
 	}
 		

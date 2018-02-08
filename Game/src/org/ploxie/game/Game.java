@@ -4,6 +4,7 @@ import org.ploxie.engine.Engine;
 import org.ploxie.engine.scene.Scene;
 import org.ploxie.engine.display.Window;
 import org.ploxie.game.scenes.DefaultScene;
+import org.ploxie.scenes.TerrainScene;
 
 public class Game {
 
@@ -15,7 +16,7 @@ public class Game {
 		Window window = Window.create(1024,  768, "PloxEngine");
 		engine.init(window);
 		
-		Scene scene = new DefaultScene();
+		Scene scene = new TerrainScene();
 		engine.start(scene);
 	}
 

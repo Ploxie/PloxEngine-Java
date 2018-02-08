@@ -20,6 +20,8 @@ public class GameObject {
 
 	protected List<Component> components;
 	protected List<GameObject> children;
+	
+	protected boolean isEnabled = true;
 
 	public GameObject() {
 		transform = new Transform();
@@ -34,6 +36,11 @@ public class GameObject {
 		components = new ArrayList<Component>();
 		children = new ArrayList<GameObject>();
 		addComponent(transform);
+	}
+	
+	public void addChild(GameObject go) {
+		children.add(go);
+		go.parent = this;
 	}
 
 	public void addComponent(Component component) {
@@ -75,6 +82,20 @@ public class GameObject {
 
 	public Transform getTransform() {
 		return transform;
+	}
+	
+	public void setEnabled(boolean enabled) {
+		this.isEnabled = enabled;
+		for(Component c : components) {
+			c.setEnabled(enabled);
+		}
+		for(GameObject c : children) {
+			c.setEnabled(enabled);
+		}
+	}
+	
+	public boolean isEnabled() {
+		return isEnabled;
 	}
 
 }

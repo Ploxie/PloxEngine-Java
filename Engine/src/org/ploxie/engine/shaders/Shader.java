@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.ploxie.engine.Engine;
 import org.ploxie.engine.utils.BufferUtils;
-import org.ploxie.engine.utils.Color;
+import org.ploxie.utils.Color;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector3f;

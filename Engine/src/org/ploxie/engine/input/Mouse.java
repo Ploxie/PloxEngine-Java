@@ -26,10 +26,15 @@ public class Mouse {
 	
 	private Vector2i mousePosition;
 	private Vector2i lastPosition;
+	private Vector2i mouseDelta;
 	private float scrollOffset;
+	
+	private Window window;
 	
 	protected Mouse(Window window) {
 		mousePosition = new Vector2i();
+		mouseDelta = new Vector2i();
+		this.window = window;
 		
 		glfwSetMouseButtonCallback(window.getHandle(), getMouseButtonCallback());
 		
@@ -40,6 +45,8 @@ public class Mouse {
 
 	protected void update() {
 		setScrollOffset(0.0f);
+		mouseDelta.x = 0;
+		mouseDelta.y = 0;
 		
 		pushedButtons.clear();
 		releasedButtons.clear();
@@ -48,6 +55,8 @@ public class Mouse {
 			MouseKeyEvent event = new MouseKeyEvent(mousePosition,i, true, false);
     		Engine.getEventManager().dispatch(event);
 		}
+		
+		
 	}
 	
 	private void setScrollOffset(float offset) {
@@ -60,6 +69,10 @@ public class Mouse {
 	
 	public float getScrollOffset() {
 		return scrollOffset;
+	}
+	
+	public Vector2i getMouseDelta() {
+		return mouseDelta;	
 	}
 	
 	private GLFWMouseButtonCallback getMouseButtonCallback() {
@@ -92,14 +105,19 @@ public class Mouse {
 
             @Override
             public void invoke(long window, double xpos, double ypos) {
-            	lastPosition = new Vector2i(mousePosition.x, mousePosition.y);
+            	//lastPosition = new Vector2i(mousePosition.x, mousePosition.y);
+            	
+            	mouseDelta.x = (int)xpos - mousePosition.x;
+            	mouseDelta.y =  (int)ypos - mousePosition.y;
+            	
             	
             	mousePosition.x = ((int) xpos);
             	mousePosition.y = ((int) ypos);
             	
             	
-            	MouseMoveEvent event = new MouseMoveEvent(mousePosition, new Vector2i(mousePosition.x, mousePosition.y).subtract(lastPosition));
+            	MouseMoveEvent event = new MouseMoveEvent(mousePosition, mouseDelta);
         		Engine.getEventManager().dispatch(event);
+        		//lastPosition = mousePosition.clone();
             }
 
 		};

@@ -26,6 +26,10 @@ public abstract class Component {
 		this.gameObject = parent;
 	}
 	
+	public void setEnabled(boolean enable) {
+		isEnabled = enable;
+	}
+	
 	public boolean isEnabled() {
 		return isEnabled;
 	}	

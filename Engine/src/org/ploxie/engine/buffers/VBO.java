@@ -21,7 +21,7 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import org.ploxie.engine.Engine;
 import org.ploxie.engine.event.events.ObjectRenderedEvent;
 import org.ploxie.engine.utils.BufferUtils;
-import org.ploxie.engine.utils.VertexStream;
+import org.ploxie.utils.VertexStream;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -50,6 +50,10 @@ public class VBO {
 		vaoID = glGenVertexArrays();
 		indexBufferID = glGenBuffers();
 		buffers = new HashMap<BufferType, VAO>();
+	}
+	
+	public int getSize() {
+		return size;
 	}
 
 	public void setIndexBufferData(int[] data, int usage) {
@@ -110,13 +114,7 @@ public class VBO {
 			glEnableVertexAttribArray(vao.index);
 		}
 
-		// glEnableVertexAttribArray(0);
-		// glEnableVertexAttribArray(1);
-
 		glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
-
-		// glDisableVertexAttribArray(0);
-		// glDisableVertexAttribArray(1);
 
 		for (VAO vao : buffers.values()) {
 			glDisableVertexAttribArray(vao.index);

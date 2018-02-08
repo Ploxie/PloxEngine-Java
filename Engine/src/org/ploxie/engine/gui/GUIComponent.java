@@ -8,7 +8,7 @@ import org.ploxie.engine.scene.GameObject;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.shaders.Shader;
-import org.ploxie.engine.utils.Color;
+import org.ploxie.utils.Color;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector2i;

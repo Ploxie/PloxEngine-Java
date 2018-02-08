@@ -12,24 +12,31 @@ public class ComponentManager {
 
 	private List<Component> components;
 	private List<Component> renderableComponents;
+	private List<Component> guiComponents;
 
 	private ComponentManager() {
 		components = new ArrayList<Component>();
 		renderableComponents = new ArrayList<Component>();
+		guiComponents = new ArrayList<Component>();
 	}
 
 	public Component addComponent(Component component) {
-		if (component instanceof Renderable) {
+		if (component instanceof GUIRenderer) {
+			guiComponents.add(component);
+		} else if (component instanceof Renderer) {
+
 			renderableComponents.add(component);
-		} 
-		
+		}
+
 		components.add(component);
 
 		return component;
 	}
 
 	public void removeComponent(Component component) {
-		if (component instanceof Renderable) {
+		if (component instanceof GUIRenderer) {
+			guiComponents.remove(component);
+		} else if (component instanceof Renderer) {
 			renderableComponents.remove(component);
 		} else {
 			components.remove(component);
@@ -37,16 +44,25 @@ public class ComponentManager {
 	}
 
 	public void update() {
-		for(Component c : components) {
-			if(c instanceof Updatable) {				
-				((Updatable)c).update();
+		for (Component c : components) {
+			if (c instanceof Updatable) {
+				if (c.isEnabled) {
+					((Updatable) c).update();
+				}
 			}
 		}
 	}
 
 	public void render() {
-		for(Component c : renderableComponents) {
-			((Renderable)c).render();
+		for (Component c : renderableComponents) {
+			if (c.isEnabled) {
+				((Renderable) c).render();
+			}
+		}
+		for (Component c : guiComponents) {
+			if (c.isEnabled) {
+				((GUIRenderer) c).render();
+			}
 		}
 	}
 

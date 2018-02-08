@@ -3,59 +3,38 @@ package org.ploxie.engine.font;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.glDisable;
-import static org.lwjgl.opengl.GL11.glBlendFunc;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL15.GL_DYNAMIC_DRAW;
 
-import org.ploxie.engine.Engine;
 import org.ploxie.engine.buffers.BufferType;
 import org.ploxie.engine.buffers.VBO;
-import org.ploxie.engine.camera.Camera;
-import org.ploxie.engine.scene.decorations.Renderable;
-import org.ploxie.engine.shaders.Shader;
+import org.ploxie.engine.model.Model;
+import org.ploxie.engine.model.materials.TextMaterial;
 import org.ploxie.engine.utils.BufferUtils;
-import org.ploxie.engine.utils.VertexStream;
-import org.ploxie.utils.math.matrix.Matrix4f;
+import org.ploxie.utils.VertexStream;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector3f;
 
-public class TextMesh implements Renderable{
+public class TextMesh extends Model{
 
-	private VBO vbo;
+	
 	private final Bitmap bitmap;
-	private Vector2f location;
 	private TextAlignment alignment;
-	private TextShader shader;
-	private Matrix4f transform;
 
-	public TextMesh(final Bitmap bitmap, final CharSequence text, Vector2f location, final TextAlignment alignment,
-			final TextShader shader) {
+	public TextMesh(final Bitmap bitmap, final CharSequence text, final TextAlignment alignment) {
+		super(null, new TextMaterial());
 		this.bitmap = bitmap;
-		this.location = location;
 		this.alignment = alignment;
-		this.shader = shader;
-		transform = new Matrix4f();
-	//	setPosition(location);
 
+		
 		create(text, true);
 	}
 	
-	public TextMesh(final Bitmap bitmap, Vector2f location, final TextAlignment alignment, final TextShader shader) {
+	public TextMesh(final Bitmap bitmap, final TextAlignment alignment) {
+		super(null, new TextMaterial());
 		this.bitmap = bitmap;
-		this.location = location;
 		this.alignment = alignment;
-		this.shader = shader;
-		transform = new Matrix4f();
-		//setPosition(location);
-		
+				
 		create("", false);
 	}
 	
@@ -86,6 +65,7 @@ public class TextMesh implements Renderable{
 		vbo.setIndexBufferData(indices.stream().mapToInt(i -> i).toArray(), usage);
 		vbo.setBufferData(BufferType.VERTEX, BufferUtils.createFlippedBuffer(vertexStream.getBuffer()), 3, usage);
 		vbo.setBufferData(BufferType.UV, BufferUtils.createFlippedBuffer(uvStream.getBuffer()), 2, usage);
+		((TextMaterial)material).setTexture(bitmap.getBitmap());
 	}
 
 	private VertexStream addQuad(VertexStream stream, final float x, final float y, final float width,
@@ -121,23 +101,8 @@ public class TextMesh implements Renderable{
 		return stream;
 	}
 	
-	public void render(final CharSequence text) {
+	public void setText(final CharSequence text) {
 		create(text, false);
-		render();
 	}
-
-	@Override
-	public void render() {
-				
-		glDisable(GL_DEPTH_TEST);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
-		shader.bind();
-		//shader.setUniforms(camera, transform, bitmap.getBitmap());
-		
-		vbo.draw();
-	}
-
 
 }

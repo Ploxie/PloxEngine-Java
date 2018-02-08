@@ -1,22 +1,13 @@
 package org.ploxie.engine.display;
 
-import static org.lwjgl.opengl.GL11.GL_DEPTH_COMPONENT;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
-import static org.lwjgl.opengl.GL11.GL_FLOAT;
-import static org.lwjgl.opengl.GL11.GL_RGBA;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glTexImage2D;
-import static org.lwjgl.opengl.GL30.GL_COLOR_ATTACHMENT0;
-import static org.lwjgl.opengl.GL30.GL_COLOR_ATTACHMENT1;
-import static org.lwjgl.opengl.GL30.GL_DEPTH_COMPONENT32F;
-import static org.lwjgl.opengl.GL30.GL_RGBA16F;
-
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowSize;
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
+
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_PROFILE;
@@ -26,7 +17,8 @@ import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowIcon;
+
+
 
 public class Window {
 
@@ -100,6 +92,7 @@ public class Window {
 		glfwMakeContextCurrent(window.handle);
 		GL.createCapabilities();
 		glfwShowWindow(window.handle);
+		
 
 		return window;
 	}

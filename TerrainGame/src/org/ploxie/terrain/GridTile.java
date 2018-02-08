@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import org.ploxie.engine.utils.BufferUtils;
-import org.ploxie.engine.utils.Color;
+import org.ploxie.utils.Color;
 import org.ploxie.utils.DataStoring;
 import org.ploxie.utils.math.vector.Vector3f;
 

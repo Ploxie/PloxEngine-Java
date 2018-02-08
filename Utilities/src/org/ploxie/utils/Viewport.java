@@ -1,4 +1,4 @@
-package org.ploxie.engine.display;
+package org.ploxie.utils;
 
 import org.ploxie.utils.math.vector.Vector2i;
 
@@ -20,5 +20,12 @@ public class Viewport {
 		return dimensions;
 	}
 	
+	public Vector2i pointToScreen(Vector2i pixel) {
+		return pixel.clone().divide(dimensions);
+	}
+	
+	public Vector2i screenToPoint(Vector2i screen) {
+		return screen.clone().multiply(dimensions);
+	}
 	
 }

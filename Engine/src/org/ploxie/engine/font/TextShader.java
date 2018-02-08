@@ -25,16 +25,16 @@ public class TextShader extends Shader {
 
 		compileShader();
 		
-		getUniform("transformMatrix");
-		getUniform("orthoMatrix");
-		getUniform("bitmapSampler");
+		//getUniform("modelMatrix");
+		//getUniform("projectionMatrix");
+		////getUniform("bitmapSampler");
 
 	}
 	
 	
 	public void setUniforms(Camera camera, Matrix4f transformation, Texture2D texture) {
-		setUniform("transformMatrix", transformation);
-		setUniform("orthoMatrix", camera.getProjectionMatrix());
+		setUniform("modelMatrix", transformation);
+		setUniform("projectionMatrix", camera.getProjectionMatrix());
 		glActiveTexture(GL_TEXTURE0 );
 		texture.bind();
 		texture.bilinearFilter();

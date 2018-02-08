@@ -2,7 +2,6 @@ package org.ploxie.utils;
 
 import java.nio.ByteBuffer;
 
-import org.ploxie.engine.utils.Color;
 import org.ploxie.utils.math.vector.Vector3f;
 
 public class DataStoring {

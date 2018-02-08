@@ -10,9 +10,9 @@ import org.ploxie.engine.utils.BufferUtils;
 
 public class Cube extends VBO{
 
-	public Cube(float dimensions) {
+	public Cube() {
 		
-		float halfSize = dimensions * 0.5f;
+		float halfSize = 1.0f * 0.5f;
 		
 		float[] vertices = new float[]{
                 -halfSize,halfSize,-halfSize,

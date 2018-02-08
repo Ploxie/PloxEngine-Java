@@ -1,13 +1,16 @@
-package org.ploxie.engine.utils;
+package org.ploxie.utils;
 
 import java.nio.FloatBuffer;
 
-import org.lwjgl.BufferUtils;
 import org.ploxie.utils.math.vector.Vector3f;
 
 
 public class Color {
 
+	public static final Color RED = new Color(1,0,0,1);
+	public static final Color GREEN = new Color(0,1,0,1);
+	public static final Color BLUE = new Color(0,0,1,1);
+	
 	private Vector3f col = new Vector3f();
 	private float a = 1;
 
@@ -47,12 +50,12 @@ public class Color {
 		return new byte[] { (byte) r, (byte) g, (byte) b, (byte) alpha };
 	}
 
-	public FloatBuffer getAsFloatBuffer() {
+	/*public FloatBuffer getAsFloatBuffer() {
 		FloatBuffer buffer = BufferUtils.createFloatBuffer(4);
 		buffer.put(new float[] { col.x, col.y, col.z, a });
 		buffer.flip();
 		return buffer;
-	}
+	}*/
 
 	public float getR() {
 		return col.x;

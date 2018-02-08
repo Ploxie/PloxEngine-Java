@@ -1,4 +1,4 @@
-package org.ploxie.engine.utils;
+package org.ploxie.utils;
 
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector3f;
