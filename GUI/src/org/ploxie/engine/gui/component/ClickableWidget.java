@@ -12,17 +12,15 @@ import org.ploxie.utils.math.vector.Vector2f;
 public class ClickableWidget extends WidgetBase implements Clickable {
 
 	protected boolean mouseEntered = false;
+	protected boolean mouseDown = false;
 	protected List<MouseAction> onMousePressActions = new ArrayList<MouseAction>();
 	protected List<MouseAction> onMouseDownActions = new ArrayList<MouseAction>();
 	protected List<MouseAction> onMouseReleaseActions = new ArrayList<MouseAction>();
 	protected List<MouseAction> onMouseEnterActions = new ArrayList<MouseAction>();
 	protected List<MouseAction> onMouseExitActions = new ArrayList<MouseAction>();
 
-	@Override
-	public boolean isInside(Vector2f point) {
-		return point.x >= getLeft() && point.x <= getRight() && point.y >= getTop() && point.y <= getBottom();
-	}
-
+	
+	
 	@Override
 	public void addOnMousePressAction(MouseAction action) {
 		onMousePressActions.add(action);
@@ -50,9 +48,10 @@ public class ClickableWidget extends WidgetBase implements Clickable {
 
 	@Override
 	public boolean onMousePress(Vector2f point) {
-		if (!isInside(point)) {
+		if (!isInside(point) ) {
 			return false;
-		}
+		}		
+		mouseDown = true;
 		for (MouseAction action : onMousePressActions) {
 			action.execute(point);
 		}
@@ -61,9 +60,10 @@ public class ClickableWidget extends WidgetBase implements Clickable {
 
 	@Override
 	public boolean onMouseDown(Vector2f point) {
-		if (!isInside(point)) {
+		if (!mouseDown) {
 			return false;
 		}
+		
 		for (MouseAction action : onMouseDownActions) {
 			action.execute(point);
 		}
@@ -72,6 +72,7 @@ public class ClickableWidget extends WidgetBase implements Clickable {
 	
 	@Override
 	public boolean onMouseRelease(Vector2f point) {
+		mouseDown = false;
 		if (!isInside(point)) {
 			return false;
 		}
@@ -131,6 +132,8 @@ public class ClickableWidget extends WidgetBase implements Clickable {
 		}
 		
 	}
+
+	
 	
 
 

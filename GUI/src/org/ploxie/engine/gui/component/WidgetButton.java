@@ -7,8 +7,13 @@ public class WidgetButton extends ClickableWidget implements Renderable{
 
 	protected WidgetBackground background = new WidgetBackground(this);
 	
+	public WidgetButton() {
+		setDynamic(true);
+	}
+	
 	@Override
 	public void render(Shader shader) {
+		background.createVBO();
 		background.render(shader);
 	}
 

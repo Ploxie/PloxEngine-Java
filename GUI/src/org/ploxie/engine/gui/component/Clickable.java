@@ -17,6 +17,4 @@ public interface Clickable {
 	public boolean onMouseEnter(Vector2f point);
 	public boolean onMouseExit(Vector2f point);
 	
-	public boolean isInside(Vector2f point);
-	
 }

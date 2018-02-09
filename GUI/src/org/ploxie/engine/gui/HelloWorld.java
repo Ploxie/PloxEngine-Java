@@ -154,15 +154,15 @@ public class HelloWorld {
 		gui = WidgetManager.create(new Viewport(0, WIDTH, 0, HEIGHT));
 		
 		WidgetWindow panel = new WidgetWindow();
-		panel.setPosition(0.5f,0.5f);
+		panel.setPosition(0.25f,0.25f);
 		panel.setSize(0.5f,0.5f);
 		panel.setBackgroundColor(new Color(0.5f,0.5f,0.5f,1f));
 		
 		
 		WidgetButton panel2 = new WidgetButton();
-		panel2.setPosition(10,10);
+		panel2.setPosition(0.0f,0.0f);
 		panel2.setSize(0.5f,0.5f);
-		panel2.setBackgroundColor(new Color(0.8f,0.8f,0.8f,1f));
+		panel2.setBackgroundColor(Color.RED);
 		panel2.setBorderColor(new Color(0,0,0,0.2f));
 		panel2.addOnMousePressAction(new MouseAction() {
 
@@ -185,6 +185,7 @@ public class HelloWorld {
 		
 		gui.addWidget(panel);
 		//panel.addChild(panel2);
+		//System.out.println(panel2.getPosition());
 		
 		
 		// Run the rendering loop until the user has attempted to close

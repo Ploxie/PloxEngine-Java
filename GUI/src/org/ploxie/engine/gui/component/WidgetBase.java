@@ -16,6 +16,8 @@ public abstract class WidgetBase implements Widget{
 	protected Vector2f size = new Vector2f(1, 1);
 	protected Vector2f position = new Vector2f(0, 0);
 	protected Vector2f pivot = new Vector2f(0.0f, 0.0f);
+	protected Vector2f anchorPoint = new Vector2f(0,0);
+	protected Vector2i absoluteSize = null;
 
 	protected boolean isDynamic = false;
 
@@ -28,6 +30,7 @@ public abstract class WidgetBase implements Widget{
 	public void setSize(float x, float y) {
 		size.x = x;
 		size.y = y;
+		absoluteSize = null;
 	}
 
 	@Override
@@ -35,12 +38,15 @@ public abstract class WidgetBase implements Widget{
 		if (parent == null) {
 			return size;
 		}
+		if(absoluteSize != null) {
+			Vector2i screenDimensions = WidgetManager.getInstance().getViewport().getDimensions();
+			return new Vector2f((float)absoluteSize.x / (float)screenDimensions.x, (float)absoluteSize.y / (float)screenDimensions.y);
+		}
 		return size.clone().multiply(parent.getSize());
 	}
 
-	public void setAbsoluteSize(int x, int y) {
-		Vector2i screenDim = WidgetManager.getInstance().getViewport().getDimensions();
-		setSize(x / screenDim.x, y / screenDim.y);
+	public void setAbsoluteSize(int x, int y) {		
+		absoluteSize = new Vector2i(x, y);
 	}
 		
 	public Vector2i getAbsoluteSize() {
@@ -61,7 +67,7 @@ public abstract class WidgetBase implements Widget{
 	@Override
 	public void setPosition(float x, float y) {		
 		position.x = x;
-		position.y = y;
+		position.y = y;		
 	}
 	
 	@Override
@@ -69,7 +75,8 @@ public abstract class WidgetBase implements Widget{
 		if (parent == null) {
 			return position;
 		}
-		return position.clone().add(parent.getPosition());
+		
+		return position.clone().multiply(parent.getSize()).add(parent.getPosition());
 	}
 
 	public void setAbsolutePosition(int x, int y) {
@@ -77,7 +84,7 @@ public abstract class WidgetBase implements Widget{
 		setPosition(x / screenDim.x, y / screenDim.y);
 	}
 	
-	public Vector2i getAbsolutePosition() {
+	public Vector2i getAbsolutePosition() {		
 		Vector2i screenDim = WidgetManager.getInstance().getViewport().getDimensions();
 		Vector2i res = new Vector2i(0,0);
 		if (parent == null) {
@@ -86,10 +93,19 @@ public abstract class WidgetBase implements Widget{
 			return res;
 		}
 		
-		Vector2f pos = position.clone().multiply(parent.getPosition());
+		Vector2f pos = getPosition();
 		res.x = (int) (pos.x * screenDim.x);
 		res.y = (int) (pos.y * screenDim.y);
 		return res;
+	}
+	
+	public void setAnchorPoint(float x, float y) {
+		anchorPoint.x = x;
+		anchorPoint.y = y;
+	}
+	
+	public Vector2f getAnchorPoint() {
+		return anchorPoint;
 	}
 	
 	@Override
@@ -156,6 +172,16 @@ public abstract class WidgetBase implements Widget{
 		Vector2f dim = getSize();
 		return pos.x + (pivot.x * dim.x) + dim.x;
 	}	
+	
+	@Override
+	public boolean isInside(Vector2f point) {
+		return point.x >= getLeft() && point.x <= getRight() && point.y >= getTop() && point.y <= getBottom();
+	}
+
+	@Override
+	public Vector2f getRelativePointOn(Vector2f point) {	
+		return point.clone().subtract(getPosition()).divide(getSize());
+	}
 	
 	public void handleEvent(WidgetEvent event) {
 		for(Widget child : children) {

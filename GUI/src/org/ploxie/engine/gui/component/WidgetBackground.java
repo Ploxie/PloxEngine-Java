@@ -75,6 +75,16 @@ public class WidgetBackground implements Widget, Renderable {
 	}
 
 	@Override
+	public void setAnchorPoint(float x, float y) {
+		parent.setAnchorPoint(x,y);
+	}
+
+	@Override
+	public Vector2f getAnchorPoint() {
+		return parent.getAnchorPoint();
+	}
+	
+	@Override
 	public void setDynamic(boolean flag) {
 		parent.setDynamic(flag);
 	}
@@ -135,6 +145,16 @@ public class WidgetBackground implements Widget, Renderable {
 		return parent.getRight();
 	}
 
+	@Override
+	public boolean isInside(Vector2f point) {
+		return parent.isInside(point);
+	}
+
+	@Override
+	public Vector2f getRelativePointOn(Vector2f point) {	
+		return parent.getRelativePointOn(point);
+	}
+	
 	@Override
 	public void handleEvent(WidgetEvent event) {
 
@@ -219,5 +239,7 @@ public class WidgetBackground implements Widget, Renderable {
 	public void addChild(Widget child) {
 		throw new RuntimeException("Not implemented");
 	}
+
+
 
 }
