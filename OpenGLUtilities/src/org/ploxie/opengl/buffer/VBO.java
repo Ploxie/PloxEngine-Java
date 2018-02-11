@@ -1,4 +1,4 @@
-package org.ploxie.engine.gui.utils;
+package org.ploxie.opengl.buffer;
 
 import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
@@ -23,8 +23,15 @@ import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VBO {
+import org.ploxie.opengl.utilities.BufferUtils;
+import org.ploxie.opengl.utilities.OpenGLObject;
 
+public class VBO implements OpenGLObject{
+
+	public enum BufferType {
+		VERTEX, UV, COLOR
+	}
+	
 	private class VAO {
 		public final int id;
 		public final int index;
@@ -47,6 +54,11 @@ public class VBO {
 		buffers = new HashMap<BufferType, VAO>();
 	}
 	
+	protected void finalize() throws Throwable{
+		System.out.println("ASD");
+		delete();
+	}
+		
 	public int getSize() {
 		return size;
 	}
@@ -116,6 +128,7 @@ public class VBO {
 		glBindVertexArray(0);
 	}
 
+	@Override
 	public void delete() {
 		glBindVertexArray(vaoID);
 		for (VAO vao : buffers.values()) {

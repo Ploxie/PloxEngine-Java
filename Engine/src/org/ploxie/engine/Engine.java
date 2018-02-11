@@ -3,11 +3,11 @@ package org.ploxie.engine;
 import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.camera.Camera2D;
 import org.ploxie.engine.camera.Camera3D;
-import org.ploxie.engine.display.Window;
 import org.ploxie.engine.event.EventManager;
 import org.ploxie.engine.input.Input;
 import org.ploxie.engine.scene.Scene;
 import org.ploxie.engine.utils.FPSCounter;
+import org.ploxie.opengl.display.Window;
 import org.ploxie.utils.Viewport;
 import org.lwjgl.glfw.GLFW;
 

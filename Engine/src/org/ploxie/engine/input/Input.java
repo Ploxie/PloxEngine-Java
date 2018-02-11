@@ -1,7 +1,8 @@
 package org.ploxie.engine.input;
 
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import org.ploxie.engine.display.Window;
+
+import org.ploxie.opengl.display.Window;
 
 public class Input {
 

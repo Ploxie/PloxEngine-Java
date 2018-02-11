@@ -149,28 +149,28 @@ public abstract class WidgetBase implements Widget{
 		Vector2f pos = getPosition();
 		Vector2f dim = getSize();
 
-		return pos.y + (pivot.y * dim.y) + dim.y;
+		return pos.y - (getPivot().y * dim.y) + dim.y;
 	}
 
 	@Override
 	public float getTop() {
 		Vector2f pos = getPosition();
 		Vector2f dim = getSize();
-		return (pos.y + (pivot.y * dim.y));
+		return (pos.y - (getPivot().y * dim.y));
 	}
 
 	@Override
 	public float getLeft() {
 		Vector2f pos = getPosition();
 		Vector2f dim = getSize();
-		return pos.x + (pivot.x * dim.x);
+		return pos.x - (getPivot().x * dim.x);
 	}
 
 	@Override
 	public float getRight() {
 		Vector2f pos = getPosition();
 		Vector2f dim = getSize();
-		return pos.x + (pivot.x * dim.x) + dim.x;
+		return pos.x - (getPivot().x * dim.x) + dim.x;
 	}	
 	
 	@Override

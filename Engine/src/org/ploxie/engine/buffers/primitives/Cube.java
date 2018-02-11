@@ -4,9 +4,8 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 
 import java.util.Random;
 
-import org.ploxie.engine.buffers.BufferType;
-import org.ploxie.engine.buffers.VBO;
 import org.ploxie.engine.utils.BufferUtils;
+import org.ploxie.opengl.buffer.VBO;
 
 public class Cube extends VBO{
 

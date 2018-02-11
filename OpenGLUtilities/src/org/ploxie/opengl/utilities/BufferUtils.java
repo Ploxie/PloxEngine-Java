@@ -1,4 +1,4 @@
-package org.ploxie.engine.gui.utils;
+package org.ploxie.opengl.utilities;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;

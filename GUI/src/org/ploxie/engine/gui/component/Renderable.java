@@ -1,6 +1,6 @@
 package org.ploxie.engine.gui.component;
 
-import org.ploxie.engine.gui.shader.Shader;
+import org.ploxie.opengl.shader.Shader;
 import org.ploxie.utils.Color;
 
 public interface Renderable {
@@ -14,5 +14,9 @@ public interface Renderable {
 	public void setBorderThickness(float thickness);
 
 	public void setBorderThickness(int pixels);
+	
+	public void setNeedsToUpdate(boolean flag);
+	
+	public boolean needsToUpdate();
 
 }

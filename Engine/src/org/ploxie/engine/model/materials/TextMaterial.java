@@ -10,14 +10,14 @@ import static org.lwjgl.opengl.GL11.glDisable;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
-import org.ploxie.engine.font.Texture2D;
 import org.ploxie.engine.shaders.Shader;
+import org.ploxie.utils.texture.Texture;
 
 public class TextMaterial extends Material{
 
-	private Texture2D texture;
+	private Texture texture;
 	
-	public void setTexture(Texture2D texture) {
+	public void setTexture(Texture texture) {
 		this.texture = texture;
 	}
 	

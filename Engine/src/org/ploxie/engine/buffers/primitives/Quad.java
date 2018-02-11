@@ -1,8 +1,7 @@
 package org.ploxie.engine.buffers.primitives;
 
-import org.ploxie.engine.buffers.BufferType;
-import org.ploxie.engine.buffers.VBO;
 import org.ploxie.engine.utils.BufferUtils;
+import org.ploxie.opengl.buffer.VBO;
 import org.ploxie.utils.VertexStream;
 import org.ploxie.utils.math.vector.Vector2f;
 

@@ -151,6 +151,7 @@ public class HelloWorld {
 		WidgetWindow panel = new WidgetWindow();
 		panel.setPosition(0.25f,0.25f);
 		panel.setSize(0.5f,0.5f);
+		panel.setTitle("Window");
 		panel.setBackgroundColor(new Color(0.5f,0.5f,0.5f,1f));
 		
 		
@@ -177,12 +178,11 @@ public class HelloWorld {
 			
 		});
 		
-		WidgetLabel label = new WidgetLabel("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,/:'\\\"[]\\\\;-=|");
-		label.setPosition(new Vector2f(0.5f,0.5f));
-		//label.setSize(new Vector2f(0.0f, 0.1f));
+		//WidgetLabel label = new WidgetLabel("Hallasdasdasdasd");
+		//label.setPosition(0.5f, 0.5f);
 		
 		gui.addWidget(panel);
-		gui.addWidget(label);
+	//	gui.addWidget(label);
 		//panel.addChild(panel2);
 		//System.out.println(panel2.getPosition());
 		
@@ -191,7 +191,7 @@ public class HelloWorld {
 		// the window or has pressed the ESCAPE key.
 		while ( !glfwWindowShouldClose(window) ) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
+			
 			gui.render();
 			
 			glfwSwapBuffers(window); // swap the color buffers

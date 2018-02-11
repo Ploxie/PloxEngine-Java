@@ -8,9 +8,7 @@ import org.ploxie.engine.event.events.KeyboardListener;
 import org.ploxie.engine.event.events.MouseKeyEvent;
 import org.ploxie.engine.event.events.MouseListener;
 import org.ploxie.engine.event.events.MouseMoveEvent;
-import org.ploxie.engine.font.Bitmap;
 import org.ploxie.engine.font.TextMesh;
-import org.ploxie.engine.font.TextShader;
 import org.ploxie.engine.gui.GUIText;
 import org.ploxie.engine.input.Input;
 import org.ploxie.engine.input.Keyboard;
@@ -23,6 +21,7 @@ import org.ploxie.engine.scene.decorations.Updatable;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2i;
 import org.ploxie.utils.math.vector.Vector3f;
+import org.ploxie.utils.texture.Bitmap;
 
 public class FPSCamera extends CameraComponent implements KeyboardListener, MouseListener {
 

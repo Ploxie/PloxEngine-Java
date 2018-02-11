@@ -20,7 +20,10 @@ public class WidgetWindow extends ResizablePanel {
 			Vector2f s = size.clone().multiply(parent.getSize());
 			return new Vector2f(s.x, TOP_BAR_SIZE_IN_PIXELS / (float) screenDimensions.x);
 		}
+		
 	};
+	
+	protected WidgetLabel title;
 
 	public WidgetWindow() {
 
@@ -35,6 +38,7 @@ public class WidgetWindow extends ResizablePanel {
 			}
 
 		});
+		
 		topBar.addOnMouseReleaseAction(new MouseAction() {
 
 			@Override
@@ -43,6 +47,7 @@ public class WidgetWindow extends ResizablePanel {
 			}
 
 		});
+		
 		topBar.addOnMouseDownAction(new MouseAction() {
 			@Override
 			public void execute(Vector2f point) {
@@ -50,9 +55,22 @@ public class WidgetWindow extends ResizablePanel {
 					return;
 				}
 				setPosition(point.clone().subtract(topBarRelativePoint.clone().multiply(topBar.parent.getSize())));
+				
 			}
 		});
 		
-
+		title = new WidgetLabel();
+		title.setPosition(0.5f, 0.5f);
+		title.setPivot(0.5f, 0.5f);
+		topBar.addChild(title);
 	}
+	
+	public void setTitle(String title) {
+		this.title.setText(title);
+	}
+	
+	public String getTitle() {
+		return this.title.getText();
+	}
+	
 }

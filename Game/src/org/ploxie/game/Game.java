@@ -2,8 +2,8 @@ package org.ploxie.game;
 
 import org.ploxie.engine.Engine;
 import org.ploxie.engine.scene.Scene;
-import org.ploxie.engine.display.Window;
 import org.ploxie.game.scenes.DefaultScene;
+import org.ploxie.opengl.display.Window;
 import org.ploxie.scenes.TerrainScene;
 
 public class Game {

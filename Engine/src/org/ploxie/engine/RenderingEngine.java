@@ -1,10 +1,10 @@
 package org.ploxie.engine;
 
 import org.lwjgl.opengl.GL11;
-import org.ploxie.engine.display.Window;
 import org.ploxie.engine.gui.WidgetManager;
 import org.ploxie.engine.scene.GameObject;
 import org.ploxie.engine.scene.Scene;
+import org.ploxie.opengl.display.Window;
 
 public class RenderingEngine {
 

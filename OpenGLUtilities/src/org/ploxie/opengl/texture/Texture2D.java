@@ -1,46 +1,41 @@
-package org.ploxie.engine.font;
+package org.ploxie.opengl.texture;
 
 import static org.lwjgl.opengl.GL11.GL_LINEAR;
 import static org.lwjgl.opengl.GL11.GL_LINEAR_MIPMAP_LINEAR;
 import static org.lwjgl.opengl.GL11.glGetFloat;
-import static org.lwjgl.opengl.GL11.glTexImage2D;
 import static org.lwjgl.opengl.GL11.GL_NEAREST;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_WRAP_S;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_WRAP_T;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
 import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glDeleteTextures;
-import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL11.glTexParameteri;
 import static org.lwjgl.opengl.GL11.glTexParameterf;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL11.GL_REPEAT;
-import static org.lwjgl.opengl.GL11.GL_RGBA;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 
-import java.awt.image.BufferedImage;
-import java.nio.ByteBuffer;
 import org.lwjgl.opengl.GL;
-import org.ploxie.engine.gui.utils.BufferUtils;
+import org.ploxie.opengl.utilities.OpenGLObject;
+import org.ploxie.utils.texture.Texture;
 
 import static org.lwjgl.opengl.EXTTextureFilterAnisotropic.GL_TEXTURE_MAX_ANISOTROPY_EXT;
 import static org.lwjgl.opengl.EXTTextureFilterAnisotropic.GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT;
 
-public class Texture2D {
+public class Texture2D implements OpenGLObject, Texture {
 
 	private int id;
 	private int width;
 	private int height;
 
 	public Texture2D() {
-		
+
 	}
 
 	public Texture2D(Texture2D texture) {
-		id = texture.getId();
+		id = texture.getID();
 		width = texture.getWidth();
 		height = texture.getHeight();
 	}
@@ -49,42 +44,18 @@ public class Texture2D {
 		id = TextureLoader.loadImage(file);
 	}
 
-	public Texture2D(BufferedImage image) {
-		width = image.getWidth();
-		height = image.getHeight();
-		
-		
-		int[] pixels = new int[image.getWidth() * image.getHeight()];
-        image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
-
-        ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4); 
-        
-        for(int y = 0; y < image.getHeight(); y++){
-            for(int x = 0; x < image.getWidth(); x++){
-                int pixel = pixels[y * image.getWidth() + x];
-                buffer.put((byte) ((pixel >> 16) & 0xFF));    
-                buffer.put((byte) ((pixel >> 8) & 0xFF));     
-                buffer.put((byte) (pixel & 0xFF));             
-                buffer.put((byte) ((pixel >> 24) & 0xFF));   
-            }
-        }
-
-        buffer.flip(); 
-		
-		
-        generate();
-        bind();   
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-		unbind();
+	public Texture2D(int textureID, int width, int height) {
+		this.id = textureID;
+		this.width = width;
+		this.height = height;
 	}
-
+	
+	protected void finalize() throws Throwable{
+		delete();
+	}
 
 	public void bind() {
 		glBindTexture(GL_TEXTURE_2D, id);
-	}
-
-	public void generate() {
-		id = glGenTextures();
 	}
 
 	public void delete() {
@@ -130,7 +101,7 @@ public class Texture2D {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	}
 
-	public int getId() {
+	public int getID() {
 		return id;
 	}
 

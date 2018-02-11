@@ -2,9 +2,9 @@ package org.ploxie.engine.input;
 
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.ploxie.engine.Engine;
-import org.ploxie.engine.display.Window;
 import org.ploxie.engine.event.events.KeyEvent;
 import org.ploxie.engine.event.events.MouseKeyEvent;
+import org.ploxie.opengl.display.Window;
 
 import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
 

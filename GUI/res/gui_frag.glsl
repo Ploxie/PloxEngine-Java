@@ -47,7 +47,7 @@ void main() {
 
 	vec4 textureColor = texture2D(texture, uv);
 
-	vec4 bg = (backgroundColor * background) + (textureColor * textureColor.w) + (color * textureColor.w);
+	vec4 bg = (backgroundColor) + (textureColor * textureColor.w) + (color * textureColor.w);
 	result = (bg * background);
 	result.xyz *= gradient;
 	result += borderColor * borders;

@@ -6,34 +6,30 @@ import java.util.List;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 import static org.lwjgl.opengl.GL15.GL_DYNAMIC_DRAW;
 
-import org.ploxie.engine.buffers.BufferType;
-import org.ploxie.engine.buffers.VBO;
 import org.ploxie.engine.model.Model;
 import org.ploxie.engine.model.materials.TextMaterial;
 import org.ploxie.engine.utils.BufferUtils;
+import org.ploxie.opengl.buffer.VBO;
+import org.ploxie.opengl.buffer.VBO.BufferType;
 import org.ploxie.utils.VertexStream;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector3f;
+import org.ploxie.utils.texture.Bitmap;
 
 public class TextMesh extends Model{
-
 	
 	private final Bitmap bitmap;
-	private TextAlignment alignment;
 
-	public TextMesh(final Bitmap bitmap, final CharSequence text, final TextAlignment alignment) {
+	public TextMesh(final Bitmap bitmap, final CharSequence text) {
 		super(null, new TextMaterial());
 		this.bitmap = bitmap;
-		this.alignment = alignment;
-
 		
 		create(text, true);
 	}
 	
-	public TextMesh(final Bitmap bitmap, final TextAlignment alignment) {
+	public TextMesh(final Bitmap bitmap) {
 		super(null, new TextMaterial());
 		this.bitmap = bitmap;
-		this.alignment = alignment;
 				
 		create("", false);
 	}
@@ -65,7 +61,6 @@ public class TextMesh extends Model{
 		vbo.setIndexBufferData(indices.stream().mapToInt(i -> i).toArray(), usage);
 		vbo.setBufferData(BufferType.VERTEX, BufferUtils.createFlippedBuffer(vertexStream.getBuffer()), 3, usage);
 		vbo.setBufferData(BufferType.UV, BufferUtils.createFlippedBuffer(uvStream.getBuffer()), 2, usage);
-		((TextMaterial)material).setTexture(bitmap.getTexture2D());
 	}
 
 	private VertexStream addQuad(VertexStream stream, final float x, final float y, final float width,

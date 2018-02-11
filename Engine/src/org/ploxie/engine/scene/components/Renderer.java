@@ -1,7 +1,6 @@
 package org.ploxie.engine.scene.components;
 
 import org.ploxie.engine.Engine;
-import org.ploxie.engine.buffers.VBO;
 import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.camera.Camera3D;
 import org.ploxie.engine.model.Model;

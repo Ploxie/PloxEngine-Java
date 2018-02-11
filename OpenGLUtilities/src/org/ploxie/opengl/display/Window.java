@@ -1,7 +1,8 @@
-package org.ploxie.engine.display;
+package org.ploxie.opengl.display;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import org.lwjgl.opengl.GL;
+import org.ploxie.opengl.utilities.OpenGLObject;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
@@ -18,9 +19,7 @@ import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
-
-
-public class Window {
+public class Window implements OpenGLObject{
 
 	private long handle;
 	private int width;
@@ -30,27 +29,23 @@ public class Window {
 
 	}
 
-	private void init() {
-		
+	protected void finalize() throws Throwable{
+		delete();
 	}
 	
 	public void swapBuffers() {
 		glfwSwapBuffers(handle);
 	}
-	
-	public void destroy() {
-		glfwDestroyWindow(handle);
-	}
-	
+
 	public boolean isCloseRequested() {
 		return glfwWindowShouldClose(handle);
 	}
-	
+
 	public void setWindowSize(int width, int height) {
 		glfwSetWindowSize(handle, width, height);
 		setWidth(width);
-		setHeight(height);		
-	}	
+		setHeight(height);
+	}
 
 	public int getWidth() {
 		return width;
@@ -67,7 +62,7 @@ public class Window {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public long getHandle() {
 		return handle;
 	}
@@ -92,9 +87,13 @@ public class Window {
 		glfwMakeContextCurrent(window.handle);
 		GL.createCapabilities();
 		glfwShowWindow(window.handle);
-		
 
 		return window;
+	}
+
+	@Override
+	public void delete() {
+		glfwDestroyWindow(handle);		
 	}
 
 }

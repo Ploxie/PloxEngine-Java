@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 import org.lwjgl.glfw.GLFWScrollCallback;
 import org.ploxie.engine.Engine;
-import org.ploxie.engine.display.Window;
 import org.ploxie.engine.event.events.MouseKeyEvent;
 import org.ploxie.engine.event.events.MouseMoveEvent;
+import org.ploxie.opengl.display.Window;
 import org.ploxie.utils.math.vector.Vector2i;
 
 import static org.lwjgl.glfw.GLFW.glfwSetCursorPosCallback;

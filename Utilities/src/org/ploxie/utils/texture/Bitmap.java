@@ -1,4 +1,4 @@
-package org.ploxie.engine.font;
+package org.ploxie.utils.texture;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,28 +12,30 @@ import org.ploxie.utils.math.vector.Vector2f;
 
 public class Bitmap {
 
+	public enum TextAlignment {
+		TOP, BOTTOM, BASELINE, MIDDLE
+	}
+
 	private static final String DEFAULT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,/:'\"[]\\;-=|";
 	private static CacheMap<String, Bitmap> BITMAP_CACHE = new CacheMap<String, Bitmap>(32);
-	
+
 	private final FontMetrics fontMetrics;
 	private final String characters;
 	private final boolean antiAliased;
 
 	private final Vector2f characterDimensions;
-
-	private final Texture2D bitmap;
-
 	private final int charactersPerRow;
 
 	private int descLine;
+	private BufferedImage bitmapImage;
 
 	public Bitmap(final FontMetrics fontMetrics, final String characters, final boolean antiAliased,
-			final BufferedImage image, final Vector2f characterDimensions) {
+			final BufferedImage bitmapImage, final Vector2f characterDimensions) {
 		this.fontMetrics = fontMetrics;
 		this.characters = characters;
 		this.antiAliased = antiAliased;
 		this.characterDimensions = characterDimensions;
-		this.bitmap = new Texture2D(image);
+		this.bitmapImage = bitmapImage;
 		this.charactersPerRow = (int) Math.ceil(Math.sqrt(characters.length()));
 	}
 
@@ -57,10 +59,6 @@ public class Bitmap {
 		return antiAliased;
 	}
 
-	public Texture2D getTexture2D() {
-		return bitmap;
-	}
-
 	/**
 	 * Gets coordinates of a character in texture-space [0..1]
 	 * 
@@ -73,13 +71,9 @@ public class Bitmap {
 		final int column = index - (row * charactersPerRow);
 
 		final Vector2f pixelSpace = new Vector2f(column * characterDimensions.x(), row * characterDimensions.y());
-		final Vector2f textureSpace = pixelSpace.divide(new Vector2f(getTexture2D().getWidth(), getTexture2D().getHeight()));
+		final Vector2f textureSpace = pixelSpace.divide(new Vector2f(bitmapImage.getWidth(), bitmapImage.getHeight()));
 		return textureSpace;
 	}
-
-	// private Vector2f getCharacterBoundsTextureDimensions() {
-	// return new Vector2f(1f / charactersPerRow, 1f / charactersPerRow);
-	// }
 
 	/**
 	 * Gets dimensions of a character in texture-space [0..1]
@@ -89,13 +83,13 @@ public class Bitmap {
 	 */
 	public Vector2f getCharacterTextureDimensions() {
 		final Vector2f pixelSpace = characterDimensions.clone();
-		final Vector2f textureSpace = pixelSpace.divide(new Vector2f(getTexture2D().getWidth(), getTexture2D().getHeight()));
+		final Vector2f textureSpace = pixelSpace.divide(new Vector2f(bitmapImage.getWidth(), bitmapImage.getHeight()));
 		return textureSpace;
 	}
 
 	public Vector2f getCharacterTextureDimensions(Vector2f dimensions) {
 		final Vector2f pixelSpace = dimensions.clone();
-		final Vector2f textureSpace = pixelSpace.divide(new Vector2f(getTexture2D().getWidth(), getTexture2D().getHeight()));
+		final Vector2f textureSpace = pixelSpace.divide(new Vector2f(bitmapImage.getWidth(), bitmapImage.getHeight()));
 		return textureSpace;
 	}
 
@@ -130,7 +124,7 @@ public class Bitmap {
 			BITMAP_CACHE.use(key);
 			return cached;
 		}
-		
+
 		final int amountOfCharacters = characters.length();
 		final int charactersPerRow = (int) Math.ceil(Math.sqrt(amountOfCharacters));
 
@@ -148,25 +142,28 @@ public class Bitmap {
 		}
 
 		int descLine = g.getFontMetrics().getMaxDescent();
-
+				
 		for (int i = 0; i < amountOfCharacters; i++) {
 			int y = (i / charactersPerRow);
 			int x = i - (y * charactersPerRow);
 
 			final String toDraw = String.valueOf(characters.charAt(i));
 
-			int xImage = (int) (x * characterWidthPixels /*+ Math.floor((characterWidthPixels / 1.25f * 0.125f))*/);
+			int xImage = (int) (x * characterWidthPixels /* + Math.floor((characterWidthPixels / 1.25f * 0.125f)) */);
 			int yImage = (y + 1) * characterHeightPixels - descLine;
 
 			g.setColor(Color.WHITE);
 			g.drawString(toDraw, xImage, yImage);
 		}
-		
 
-		
-		final Bitmap bitmap = new Bitmap(g.getFontMetrics(), characters.toString(), antiAliased, image,	new Vector2f(characterWidthPixels, characterHeightPixels));
+		final Bitmap bitmap = new Bitmap(g.getFontMetrics(), characters.toString(), antiAliased, image,
+				new Vector2f(characterWidthPixels, characterHeightPixels));
 		BITMAP_CACHE.put(key, bitmap);
 		return bitmap;
 	}
 	
+	public BufferedImage getImage() {
+		return bitmapImage;
+	}
+
 }

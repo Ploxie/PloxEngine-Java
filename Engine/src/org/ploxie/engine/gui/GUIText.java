@@ -2,11 +2,10 @@ package org.ploxie.engine.gui;
 
 import java.awt.Font;
 
-import org.ploxie.engine.font.Bitmap;
 import org.ploxie.engine.font.TextMesh;
-import org.ploxie.engine.font.TextShader;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.components.GUIRenderer;
+import org.ploxie.utils.texture.Bitmap;
 
 public class GUIText extends Component {
 
@@ -23,7 +22,7 @@ public class GUIText extends Component {
 	@Override
 	public void awake() {
 
-		getGameObject().addComponent(new GUIRenderer(textMesh, new TextShader()));
+		//getGameObject().addComponent(new GUIRenderer(textMesh, new TextShader()));
 
 	}
 

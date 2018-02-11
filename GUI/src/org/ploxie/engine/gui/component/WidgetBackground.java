@@ -1,16 +1,21 @@
 package org.ploxie.engine.gui.component;
 
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL15.GL_DYNAMIC_DRAW;
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.ploxie.engine.gui.WidgetManager;
 import org.ploxie.engine.gui.event.WidgetEvent;
-import org.ploxie.engine.gui.shader.Shader;
-import org.ploxie.engine.gui.utils.BufferType;
-import org.ploxie.engine.gui.utils.BufferUtils;
-import org.ploxie.engine.gui.utils.VBO;
+import org.ploxie.opengl.buffer.VBO;
+import org.ploxie.opengl.buffer.VBO.BufferType;
+import org.ploxie.opengl.shader.Shader;
+import org.ploxie.opengl.texture.Texture2D;
+import org.ploxie.opengl.texture.TextureLoader;
+import org.ploxie.opengl.utilities.BufferUtils;
 import org.ploxie.utils.Color;
 import org.ploxie.utils.VertexStream;
 import org.ploxie.utils.math.vector.Vector2f;
@@ -25,11 +30,16 @@ public class WidgetBackground implements Widget, Renderable {
 	protected Color backgroundColor = new Color(0, 0, 0, 0.1f);
 	protected Color borderColor = new Color(0, 0, 0, 1);
 	protected boolean needsToUpdate;
+	private Texture2D texture;
 
 	public WidgetBackground(Widget parent) {
 		this.parent = parent;
 
 		setBorderThickness(1);
+		
+		BufferedImage image = new BufferedImage(1,1,BufferedImage.TYPE_INT_ARGB);
+		image.setRGB(0, 0, 0);
+		texture = TextureLoader.loadTexture(image);
 	}
 
 	@Override
@@ -158,7 +168,7 @@ public class WidgetBackground implements Widget, Renderable {
 	
 	@Override
 	public void handleEvent(WidgetEvent event) {
-
+		
 	}
 
 	protected void createVBO() {
@@ -205,13 +215,12 @@ public class WidgetBackground implements Widget, Renderable {
 		shader.setUniform("color", Color.NO_COLOR);
 		shader.setUniform("borderColor", borderColor);
 		shader.setUniform("borderThickness", borderThickness);
+		
+		texture.bind();
+		shader.setUniform("texture", 0);
 		vbo.draw();
-
-		for (Widget child : parent.getChildren()) {
-			if (child instanceof Renderable) {
-				((Renderable) child).render(shader);
-			}
-		}
+		texture.unbind();
+		
 	}
 
 	@Override
@@ -238,6 +247,16 @@ public class WidgetBackground implements Widget, Renderable {
 	@Override
 	public void addChild(Widget child) {
 		throw new RuntimeException("Not implemented");
+	}
+
+	@Override
+	public void setNeedsToUpdate(boolean flag) {
+		needsToUpdate = flag;		
+	}
+
+	@Override
+	public boolean needsToUpdate() {
+		return needsToUpdate;
 	}
 
 
