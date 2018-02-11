@@ -81,7 +81,7 @@ public abstract class WidgetBase implements Widget{
 
 	public void setAbsolutePosition(int x, int y) {
 		Vector2i screenDim = WidgetManager.getInstance().getViewport().getDimensions();
-		setPosition(x / screenDim.x, y / screenDim.y);
+		setPosition(x / (float)screenDim.x, y / (float)screenDim.y);
 	}
 	
 	public Vector2i getAbsolutePosition() {		

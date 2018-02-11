@@ -5,7 +5,9 @@ in vec2 uv;
 uniform vec2 size;
 uniform vec4 backgroundColor;
 uniform vec4 borderColor;
+uniform vec4 color;
 uniform vec2 borderThickness;
+uniform sampler2D texture;
 
 /*float roundedCorner(vec2 uv, float intensity, float softness) {
 	vec2 coords = (((uv * (size * intensity)) - .5) * 1.0f + 0.5f);
@@ -43,7 +45,10 @@ void main() {
 	float background = 1.0f - borders;
 	float gradient = gradient(uv.y);
 
-	result = backgroundColor * background;
+	vec4 textureColor = texture2D(texture, uv);
+
+	vec4 bg = (backgroundColor * background) + (textureColor * textureColor.w) + (color * textureColor.w);
+	result = (bg * background);
 	result.xyz *= gradient;
 	result += borderColor * borders;
 	gl_FragColor = result;

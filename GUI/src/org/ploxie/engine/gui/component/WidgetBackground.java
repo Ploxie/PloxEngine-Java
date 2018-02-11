@@ -22,8 +22,9 @@ public class WidgetBackground implements Widget, Renderable {
 	protected VBO vbo = null;
 
 	protected Vector2f borderThickness = new Vector2f(0, 0);
-	protected Color backgroundColor = new Color(0, 0, 0, 1);
+	protected Color backgroundColor = new Color(0, 0, 0, 0.1f);
 	protected Color borderColor = new Color(0, 0, 0, 1);
+	protected boolean needsToUpdate;
 
 	public WidgetBackground(Widget parent) {
 		this.parent = parent;
@@ -34,7 +35,7 @@ public class WidgetBackground implements Widget, Renderable {
 	@Override
 	public void setSize(float x, float y) {
 		parent.setSize(x, y);
-		createVBO();
+		needsToUpdate = true;
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class WidgetBackground implements Widget, Renderable {
 	@Override
 	public void setAbsoluteSize(int x, int y) {
 		parent.setAbsoluteSize(x, y);
-		createVBO();
+		needsToUpdate = true;
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class WidgetBackground implements Widget, Renderable {
 	@Override
 	public void setPosition(float x, float y) {
 		parent.setPosition(x, y);
-		createVBO();
+		needsToUpdate = true;
 	}
 
 	@Override
@@ -161,9 +162,7 @@ public class WidgetBackground implements Widget, Renderable {
 	}
 
 	protected void createVBO() {
-		if (vbo != null && !isDynamic()) {
-			return;
-		}
+		needsToUpdate = false;
 
 		float left = getLeft();
 		float right = getRight();
@@ -175,7 +174,7 @@ public class WidgetBackground implements Widget, Renderable {
 		vertexStream.append(new Vector2f(left, bottom));
 		vertexStream.append(new Vector2f(right, top));
 		vertexStream.append(new Vector2f(right, bottom));
-
+		
 		VertexStream uvStream = new VertexStream(6 * 2);
 		uvStream.append(new Vector2f(0, 0));
 		uvStream.append(new Vector2f(0, 1));
@@ -197,12 +196,13 @@ public class WidgetBackground implements Widget, Renderable {
 
 	@Override
 	public void render(Shader shader) {
-		if (vbo == null || isDynamic()) {
+		if (vbo == null || (isDynamic() && needsToUpdate)) {
 			createVBO();
 		}
 
 		shader.setUniform("size", getSize());
 		shader.setUniform("backgroundColor", backgroundColor);
+		shader.setUniform("color", Color.NO_COLOR);
 		shader.setUniform("borderColor", borderColor);
 		shader.setUniform("borderThickness", borderThickness);
 		vbo.draw();

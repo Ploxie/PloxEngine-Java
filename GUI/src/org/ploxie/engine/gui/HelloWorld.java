@@ -4,6 +4,7 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 import org.ploxie.engine.gui.component.WidgetButton;
+import org.ploxie.engine.gui.component.WidgetLabel;
 import org.ploxie.engine.gui.component.WidgetPanel;
 import org.ploxie.engine.gui.component.WidgetWindow;
 import org.ploxie.engine.gui.event.ClickEvent;
@@ -182,8 +183,12 @@ public class HelloWorld {
 			
 		});
 		
+		WidgetLabel label = new WidgetLabel("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,/:'\\\"[]\\\\;-=|");
+		label.setPosition(new Vector2f(0.5f,0.5f));
+		//label.setSize(new Vector2f(0.0f, 0.1f));
 		
 		gui.addWidget(panel);
+		gui.addWidget(label);
 		//panel.addChild(panel2);
 		//System.out.println(panel2.getPosition());
 		

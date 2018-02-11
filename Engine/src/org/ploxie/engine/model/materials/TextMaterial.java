@@ -10,8 +10,8 @@ import static org.lwjgl.opengl.GL11.glDisable;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
+import org.ploxie.engine.font.Texture2D;
 import org.ploxie.engine.shaders.Shader;
-import org.ploxie.engine.textures.Texture2D;
 
 public class TextMaterial extends Material{
 

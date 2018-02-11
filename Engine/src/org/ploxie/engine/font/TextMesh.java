@@ -65,7 +65,7 @@ public class TextMesh extends Model{
 		vbo.setIndexBufferData(indices.stream().mapToInt(i -> i).toArray(), usage);
 		vbo.setBufferData(BufferType.VERTEX, BufferUtils.createFlippedBuffer(vertexStream.getBuffer()), 3, usage);
 		vbo.setBufferData(BufferType.UV, BufferUtils.createFlippedBuffer(uvStream.getBuffer()), 2, usage);
-		((TextMaterial)material).setTexture(bitmap.getBitmap());
+		((TextMaterial)material).setTexture(bitmap.getTexture2D());
 	}
 
 	private VertexStream addQuad(VertexStream stream, final float x, final float y, final float width,

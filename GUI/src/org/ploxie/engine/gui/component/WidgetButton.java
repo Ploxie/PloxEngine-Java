@@ -12,8 +12,7 @@ public class WidgetButton extends ClickableWidget implements Renderable{
 	}
 	
 	@Override
-	public void render(Shader shader) {
-		background.createVBO();
+	public void render(Shader shader) {		
 		background.render(shader);
 	}
 

@@ -10,6 +10,7 @@ public class Color {
 	public static final Color RED = new Color(1,0,0,1);
 	public static final Color GREEN = new Color(0,1,0,1);
 	public static final Color BLUE = new Color(0,0,1,1);
+	public static final Color NO_COLOR = new Color(0,0,0,0);
 	
 	private Vector3f col = new Vector3f();
 	private float a = 1;
