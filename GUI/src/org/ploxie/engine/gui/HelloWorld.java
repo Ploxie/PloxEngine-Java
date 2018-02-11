@@ -27,7 +27,6 @@ public class HelloWorld {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 	
-	// The window handle
 	private long window;
 
 	private WidgetManager gui;
@@ -42,21 +41,16 @@ public class HelloWorld {
 		init();
 		loop();
 
-		// Free the window callbacks and destroy the window
 		glfwFreeCallbacks(window);
 		glfwDestroyWindow(window);
 
-		// Terminate GLFW and free the error callback
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
 	}
 
 	private void init() {
-		// Setup an error callback. The default implementation
-		// will print the error message in System.err.
 		GLFWErrorCallback.createPrint(System.err).set();
 
-		// Initialize GLFW. Most GLFW functions will not work before doing this.
 		if ( !glfwInit() )
 			throw new IllegalStateException("Unable to initialize GLFW");
 

@@ -15,9 +15,6 @@ public class TerrainShader extends Shader{
 
 		compileShader();
 
-		//addUniform("lightDirection");
-		//addUniform("lightColour");
-		//addUniform("lightBias");
 		getUniform("modelMatrix");	
 		getUniform("viewMatrix");	
 		getUniform("projectionMatrix");	

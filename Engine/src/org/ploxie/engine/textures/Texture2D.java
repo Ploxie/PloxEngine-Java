@@ -74,15 +74,15 @@ public class Texture2D {
 		int[] pixels = new int[image.getWidth() * image.getHeight()];
         image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
 
-        ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4); //4 for RGBA, 3 for RGB
+        ByteBuffer buffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4); 
         
         for(int y = 0; y < image.getHeight(); y++){
             for(int x = 0; x < image.getWidth(); x++){
                 int pixel = pixels[y * image.getWidth() + x];
-                buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
-                buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
-                buffer.put((byte) (pixel & 0xFF));               // Blue component
-                buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
+                buffer.put((byte) ((pixel >> 16) & 0xFF));     
+                buffer.put((byte) ((pixel >> 8) & 0xFF));      
+                buffer.put((byte) (pixel & 0xFF));              
+                buffer.put((byte) ((pixel >> 24) & 0xFF));    
             }
         }
 
@@ -90,8 +90,7 @@ public class Texture2D {
 		
 		
         generate();
-        bind();
-        //bilinearFilter();        
+        bind(); 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 		unbind();
 	}

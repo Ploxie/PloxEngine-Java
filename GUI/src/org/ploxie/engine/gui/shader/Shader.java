@@ -65,7 +65,6 @@ public class Shader {
 
 		if (uniformLocation == 0xFFFFFFFF) {
 			System.err.println("Failed to find uniform: " + uniform);
-			// throw new RuntimeException("Failed to find uniform: " + uniform);
 		}
 
 		uniforms.put(uniform, uniformLocation);

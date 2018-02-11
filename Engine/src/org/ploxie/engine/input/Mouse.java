@@ -105,7 +105,6 @@ public class Mouse {
 
             @Override
             public void invoke(long window, double xpos, double ypos) {
-            	//lastPosition = new Vector2i(mousePosition.x, mousePosition.y);
             	
             	mouseDelta.x = (int)xpos - mousePosition.x;
             	mouseDelta.y =  (int)ypos - mousePosition.y;
@@ -117,7 +116,6 @@ public class Mouse {
             	
             	MouseMoveEvent event = new MouseMoveEvent(mousePosition, mouseDelta);
         		Engine.getEventManager().dispatch(event);
-        		//lastPosition = mousePosition.clone();
             }
 
 		};

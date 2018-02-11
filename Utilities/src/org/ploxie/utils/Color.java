@@ -189,7 +189,6 @@ public class Color {
 		if (dest == null) {
 			return new Color(r, g, b);
 		} else {
-			// dest.setColor(r, g, b);
 			return dest;
 		}
 	}

@@ -23,14 +23,6 @@ public class Terrain extends VBO{
 		for(int y = 0; y < height+1;y++) {
 			for(int x = 0; x < width+1;x++) {				
 				stream.append(new Vector3f(x,0,y));	
-				//stream.append(new Vector3f(x+1,0,y));	
-				//stream.append(new Vector3f(x,0,y+1));	
-			//	stream.append(new Vector3f(x+1,0,y+1));	
-				
-				//System.out.println(new Vector3f(x,0,y));
-				//System.out.println(new Vector3f(x+1,0,y));
-				//System.out.println(new Vector3f(x,0,y+1));
-				//System.out.println(new Vector3f(x+1,0,y+1));
 			}
 		}
 		
@@ -47,17 +39,11 @@ public class Terrain extends VBO{
 			indices[i+4] = index+1;
 			indices[i+5] = (index+width+2);
 			System.out.println(index % (width+1));
-			//System.out.println(index);
-			//if(index % (width+1) == 2) {
-				//index+=2;
-			//}else {
 				index++;
-			//}
 			
 		}
 		
 		for(int i = 0; i < indices.length;i++) {
-			//System.out.println(indices[i]);
 		}
 		
 		Random rand = new Random();

@@ -40,7 +40,6 @@ public class DebugInfo extends Component implements Updatable, KeyboardListener{
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		// TODO Auto-generated method stub
 		
 		if(event.getKey() == Keyboard.KEY_F1) {
 			toggle = !toggle;
@@ -52,13 +51,11 @@ public class DebugInfo extends Component implements Updatable, KeyboardListener{
 
 	@Override
 	public void keyReleased(KeyEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyHeld(KeyEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -48,7 +48,6 @@ public class FPSCamera extends CameraComponent implements KeyboardListener, Mous
 	
 	@Override
 	public void awake() {
-		// TODO Auto-generated method stub
 		super.awake();
 		updateTranslation(transform.getWorldMatrix().makeFPSViewMatrix(position, pitch, yaw));
 	}
@@ -114,7 +113,6 @@ public class FPSCamera extends CameraComponent implements KeyboardListener, Mous
 
 	@Override
 	public void onMouseMove(MouseMoveEvent event) {
-		// TODO Auto-generated method stub
 
 		if (!mouseDown) {
 			return;
@@ -139,7 +137,6 @@ public class FPSCamera extends CameraComponent implements KeyboardListener, Mous
 
 	@Override
 	public void onMouseHeld(MouseKeyEvent event) {
-		// TODO Auto-generated method stub
 		
 
 	}
@@ -153,7 +150,6 @@ public class FPSCamera extends CameraComponent implements KeyboardListener, Mous
 
 	@Override
 	public void onMouseDown(MouseKeyEvent event) {
-		// TODO Auto-generated method stub
 		if (event.getButton() == Mouse.BUTTON_1) {
 			mouseDown = true;
 		}
@@ -161,7 +157,6 @@ public class FPSCamera extends CameraComponent implements KeyboardListener, Mous
 
 	@Override
 	public void keyReleased(KeyEvent event) {
-		// TODO Auto-generated method stub
 
 	}
 

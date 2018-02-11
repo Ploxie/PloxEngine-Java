@@ -77,10 +77,6 @@ public class Bitmap {
 		return textureSpace;
 	}
 
-	// private Vector2f getCharacterBoundsTextureDimensions() {
-	// return new Vector2f(1f / charactersPerRow, 1f / charactersPerRow);
-	// }
-
 	/**
 	 * Gets dimensions of a character in texture-space [0..1]
 	 * 

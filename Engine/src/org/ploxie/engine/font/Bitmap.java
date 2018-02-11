@@ -140,14 +140,6 @@ public class Bitmap {
 		int originalDimensions = characterWidthPixels * charactersPerRow;
 		int dimensions = originalDimensions;
 
-		/*for (int x = 0; x < 16; x++) {
-			int width = (int) Math.pow(2, x);
-			if (width >= dimensions) {
-				 dimensions = width;
-				break;
-			}
-		}*/
-
 		final BufferedImage image = new BufferedImage(dimensions, dimensions, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g = (Graphics2D) image.getGraphics();
 		g.setFont(font);

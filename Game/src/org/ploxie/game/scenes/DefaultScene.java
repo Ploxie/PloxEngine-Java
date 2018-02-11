@@ -44,7 +44,6 @@ public class DefaultScene extends Scene {
 		});
 
 		a.addComponent(new Renderer(cube, new PrimitiveShader()));
-		// t1.setTranslation(500,0,0);
 	}
 
 }

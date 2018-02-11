@@ -56,7 +56,6 @@ public class GUIComponent extends Component implements Renderable {
 	public void render() {
 
 		shader.bind();
-		//shader.setUniforms(camera, getTransformation(), color);
 		vbo.draw();
 	}
 

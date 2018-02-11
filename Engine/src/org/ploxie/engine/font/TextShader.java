@@ -22,11 +22,7 @@ public class TextShader extends Shader {
 		addVertexShader(vert);
 		addFragmentShader(frag);
 
-		compileShader();
-		
-		//getUniform("modelMatrix");
-		//getUniform("projectionMatrix");
-		////getUniform("bitmapSampler");
+		compileShader();		
 
 	}
 	

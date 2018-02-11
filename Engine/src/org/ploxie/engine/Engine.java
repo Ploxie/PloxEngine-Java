@@ -106,16 +106,9 @@ public class Engine {
 				
 				fpsCounter.update();
 				
-				//System.out.println(input.getMouse().getMouseDelta());
 
 				renderingEngine.update();
 				input.update();
-				/*try {
-					Thread.sleep((long) (1000.0 / 1000.0));
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 
 		}
 	}
