@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ploxie.engine.gui.WidgetManager;
+import org.ploxie.engine.gui.event.ResizeEvent;
 import org.ploxie.engine.gui.event.WidgetEvent;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector2i;
@@ -31,6 +32,7 @@ public abstract class WidgetBase implements Widget{
 		size.x = x;
 		size.y = y;
 		absoluteSize = null;
+		handleEvent(new ResizeEvent());
 	}
 
 	@Override

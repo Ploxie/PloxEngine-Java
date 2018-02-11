@@ -1,5 +1,7 @@
 package org.ploxie.engine.gui.component;
 
+import java.awt.Font;
+
 import org.ploxie.engine.gui.WidgetManager;
 import org.ploxie.engine.gui.event.actions.MouseAction;
 import org.ploxie.utils.Color;
@@ -9,7 +11,8 @@ import org.ploxie.utils.math.vector.Vector2i;
 public class WidgetWindow extends ResizablePanel {
 
 	private static final float TOP_BAR_SIZE_IN_PIXELS = 35.0f;
-	private static final Color TOP_BAR_COLOR = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+	private static final Color DEFAULT_TOP_BAR_COLOR = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+	private static final Color DEFAULT_BACKGROUND_COLOR = new Color(0.5f, 0.5f, 0.5f, 1.0f);
 	
 	private Vector2f topBarRelativePoint = null;
 	protected WidgetButton topBar = new WidgetButton() {
@@ -27,9 +30,12 @@ public class WidgetWindow extends ResizablePanel {
 
 	public WidgetWindow() {
 
+		setBackgroundColor(DEFAULT_BACKGROUND_COLOR);
+		setBorderThickness(1);
+		
 		addChild(topBar);
 		topBar.setAbsolutePosition(0, 1);
-		topBar.setBackgroundColor(TOP_BAR_COLOR);
+		topBar.setBackgroundColor(DEFAULT_TOP_BAR_COLOR);
 		topBar.addOnMousePressAction(new MouseAction() {
 
 			@Override
@@ -62,6 +68,7 @@ public class WidgetWindow extends ResizablePanel {
 		title = new WidgetLabel();
 		title.setPosition(0.5f, 0.5f);
 		title.setPivot(0.5f, 0.5f);
+		title.setFont(new Font("Arial", Font.BOLD, 16));
 		topBar.addChild(title);
 	}
 	

@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import org.ploxie.opengl.utilities.OpenGLObject;
 import org.ploxie.utils.Color;
+import org.ploxie.utils.math.matrix.Matrix3f;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector2i;
@@ -147,6 +148,10 @@ public class Shader implements OpenGLObject {
 		glUniform4f(getUniform(uniformName), value.getR(), value.getG(), value.getB(), value.getA());
 	}
 
+	public void setUniform(String uniformName, Matrix3f value) {
+		glUniformMatrix3fv(getUniform(uniformName), false, createFlippedBuffer(value));
+	}
+	
 	public void setUniform(String uniformName, Matrix4f value) {
 		glUniformMatrix4fv(getUniform(uniformName), false, createFlippedBuffer(value));
 	}
@@ -155,6 +160,14 @@ public class Shader implements OpenGLObject {
 		return org.lwjgl.BufferUtils.createFloatBuffer(size);
 	}
 
+	private static FloatBuffer createFlippedBuffer(Matrix3f matrix) {
+		FloatBuffer buffer = createFloatBuffer(9);
+		matrix.fillBuffer(buffer);
+		buffer.flip();
+
+		return buffer;
+	}
+	
 	private static FloatBuffer createFlippedBuffer(Matrix4f matrix) {
 		FloatBuffer buffer = createFloatBuffer(16);
 		matrix.fillBuffer(buffer);

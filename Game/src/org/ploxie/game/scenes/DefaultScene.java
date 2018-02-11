@@ -1,6 +1,5 @@
 package org.ploxie.game.scenes;
 
-import org.ploxie.engine.buffers.primitives.Cube;
 import org.ploxie.engine.model.Model;
 import org.ploxie.engine.model.materials.Material;
 import org.ploxie.engine.scene.GameObject;
@@ -9,6 +8,7 @@ import org.ploxie.engine.scene.components.Renderer;
 import org.ploxie.engine.scene.debug.DebugInfo;
 import org.ploxie.engine.shaders.PrimitiveShader;
 import org.ploxie.engine.shaders.Shader;
+import org.ploxie.opengl.buffer.primitive.Cube;
 import org.ploxie.utils.math.vector.Vector3f;
 
 public class DefaultScene extends Scene {

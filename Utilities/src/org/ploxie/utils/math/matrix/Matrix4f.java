@@ -122,7 +122,7 @@ public class Matrix4f implements Cloneable {
 
 		return this;
 	}
-
+	
 	public Matrix3f toRotationMatrix(final Matrix3f m3f) {
 		float[] values3 = m3f.getValues();
 		values3[0] = values[0];
@@ -496,6 +496,16 @@ public class Matrix4f implements Cloneable {
 	
 		
         return this;
+	}
+
+	public void setScale(float x, float y, float z) {
+		values[0] = x;
+		values[5] = y;
+		values[10] = z;
+	}
+
+	public Vector3f getScale() {
+		return new Vector3f(values[0], values[5], values[10]);
 	}
 
 	

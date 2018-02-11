@@ -18,7 +18,6 @@ public class ClickableWidget extends WidgetBase implements Clickable {
 	protected List<MouseAction> onMouseReleaseActions = new ArrayList<MouseAction>();
 	protected List<MouseAction> onMouseEnterActions = new ArrayList<MouseAction>();
 	protected List<MouseAction> onMouseExitActions = new ArrayList<MouseAction>();
-
 	
 	
 	@Override

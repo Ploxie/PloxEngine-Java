@@ -3,6 +3,7 @@ package org.ploxie.utils.math.matrix;
 import java.nio.FloatBuffer;
 
 import org.ploxie.utils.math.Math;
+import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector3f;
 
 public class Matrix3f {
@@ -30,6 +31,8 @@ public class Matrix3f {
 	public float[] getValues() {
 		return values;
 	}
+	
+
 
 	/**
 	 * Sets matrix to:
@@ -165,4 +168,36 @@ public class Matrix3f {
 		}
 		return this;
 	}
+	
+	public void setTranslation(Vector2f translation) {
+		setTranslation(translation.x, translation.y);
+	}
+	
+	public void setTranslation(float x, float y) {
+		values[6] = x;
+		values[7] = y;
+	}
+	
+	public Vector2f getTranslation() {
+		return new Vector2f(values[6], values[7]);
+	}
+	
+	public void setScale(Vector2f scale) {
+		setScale(scale.x, scale.y);
+	}
+	
+	public void setScale(float x, float y) {
+		values[0] = x;
+		values[4] = y;
+	}
+	
+	public Vector2f getScale() {
+		return new Vector2f(values[0], values[4]);
+	}
+
+	public FloatBuffer fillBuffer(final FloatBuffer floatBuffer) {
+		floatBuffer.put(values);
+		return floatBuffer;
+	}
+	
 }

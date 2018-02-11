@@ -4,7 +4,7 @@ import org.ploxie.opengl.shader.Shader;
 import org.ploxie.utils.Color;
 
 public interface Renderable {
-
+	
 	public void render(Shader shader);
 
 	public void setBackgroundColor(Color color);
@@ -15,8 +15,4 @@ public interface Renderable {
 
 	public void setBorderThickness(int pixels);
 	
-	public void setNeedsToUpdate(boolean flag);
-	
-	public boolean needsToUpdate();
-
 }

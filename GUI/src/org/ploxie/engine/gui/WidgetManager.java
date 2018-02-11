@@ -13,6 +13,7 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 import org.ploxie.engine.gui.component.Widget;
 import org.ploxie.engine.gui.component.WidgetBase;
 import org.ploxie.engine.gui.component.WidgetPanel;
+import org.ploxie.engine.gui.event.RenderEvent;
 import org.ploxie.engine.gui.event.WidgetEvent;
 import org.ploxie.opengl.shader.Shader;
 import org.ploxie.engine.gui.component.Renderable;
@@ -48,11 +49,7 @@ public class WidgetManager{
 		shader.bind();
 		
 		glActiveTexture(GL_TEXTURE0);
-		for (Widget child : rootObject.getChildren()) {
-			if(child instanceof Renderable) {				
-				((Renderable)child).render(shader);
-			}
-		}
+		rootObject.handleEvent(new RenderEvent(shader));
 	}
 
 	public void setViewport(Viewport viewport) {

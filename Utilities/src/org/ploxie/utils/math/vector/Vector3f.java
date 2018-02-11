@@ -54,6 +54,10 @@ public class Vector3f implements Cloneable {
 		this.z = z;
 	}
 
+	public Vector2f xy() {
+		return new Vector2f(x,y);
+	}
+	
 	public Vector3f xyz(float x, float y, float z) {
 		this.x = x;
 		this.y = y;

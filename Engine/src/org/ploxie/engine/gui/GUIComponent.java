@@ -1,13 +1,13 @@
 package org.ploxie.engine.gui;
 
 import org.ploxie.engine.Engine;
-import org.ploxie.engine.buffers.primitives.Quad;
 import org.ploxie.engine.camera.Camera;
 import org.ploxie.engine.scene.GameObject;
 import org.ploxie.engine.scene.components.Component;
 import org.ploxie.engine.scene.decorations.Renderable;
 import org.ploxie.engine.shaders.Shader;
 import org.ploxie.opengl.buffer.VBO;
+import org.ploxie.opengl.buffer.primitive.Quad;
 import org.ploxie.utils.Color;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;

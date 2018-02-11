@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ploxie.engine.gui.WidgetManager;
+import org.ploxie.engine.gui.event.RenderEvent;
+import org.ploxie.engine.gui.event.ResizeEvent;
+import org.ploxie.engine.gui.event.WidgetEvent;
 import org.ploxie.opengl.buffer.VBO;
 import org.ploxie.opengl.buffer.VBO.BufferType;
 import org.ploxie.opengl.shader.Shader;
@@ -27,9 +30,9 @@ import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.utils.math.vector.Vector2i;
 import org.ploxie.utils.texture.Bitmap;
 
-public class WidgetLabel extends WidgetBase implements Renderable {
+public class WidgetLabel extends WidgetPanel {
 
-	private static final Font DEFAULT_FONT = new Font("Arial", Font.BOLD, 16);
+	private static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
 
 	private VBO vbo;
 	private String text;
@@ -37,7 +40,6 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 	private boolean antiAliased = true;
 	private boolean needsToUpdate = true;
 
-	private WidgetBackground background;
 	private Color textColor;
 	private Bitmap bitmap;
 	private Texture2D bitmapTexture;
@@ -49,8 +51,7 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 		}
 		
 		@Override
-		public Vector2f getPivot() {
-			
+		public Vector2f getPivot() {			
 			return parent.getPivot();
 		}
 		
@@ -63,34 +64,44 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 	public WidgetLabel() {
 		this.text = "";
 
-		background = new WidgetBackground(this);
 		textColor = new Color(1, 1, 1, 1);
 		setBorderThickness(1);
-		setBorderColor(Color.NO_COLOR);
-		setBackgroundColor(Color.NO_COLOR);
+		setBorderColor(Color.BLUE);
+		setBackgroundColor(Color.RED);
 
 		setFont(DEFAULT_FONT);
 
 		addChild(viewport);
-		addChild(background);
 	}
 
 	public WidgetLabel(String text) {
 		this.text = text;
 
-		background = new WidgetBackground(this);
 		textColor = new Color(1, 1, 1, 1);
 		setBorderThickness(1);
-		setBorderColor(Color.NO_COLOR);
-		setBackgroundColor(Color.NO_COLOR);
+		setBorderColor(Color.RED);
+		setBackgroundColor(Color.RED);
 		setFont(DEFAULT_FONT);
 
-		addChild(viewport);
-		addChild(background);
+		addChild(viewport);		
+	}
+	
+	@Override
+	public void handleEvent(WidgetEvent event) {	
+		if(event instanceof ResizeEvent) {
+			create(text, true);
+		}
+		
+		super.handleEvent(event);
+		
+		if(event instanceof RenderEvent) {
+			render(((RenderEvent) event).getShader());
+		}
 	}
 
 	@Override
 	public void render(Shader shader) {
+		super.render(shader);
 		if (needsToUpdate) {
 			create(text, true);
 			needsToUpdate = false;
@@ -99,8 +110,6 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		background.render(shader);
 
 		shader.setUniform("size", getSize());
 		shader.setUniform("color", textColor);
@@ -153,6 +162,7 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 			currentX += currentWidth;
 		}
 
+		
 		int usage = drawStatic ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
 
 		if (vbo == null) {
@@ -219,26 +229,6 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 	}
 
 	@Override
-	public void setBackgroundColor(Color color) {
-		background.setBackgroundColor(color);
-	}
-
-	@Override
-	public void setBorderColor(Color color) {
-		background.setBorderColor(color);
-	}
-
-	@Override
-	public void setBorderThickness(float thickness) {
-		background.setBorderThickness(thickness);
-	}
-
-	@Override
-	public void setBorderThickness(int pixels) {
-		background.setBorderThickness(pixels);
-	}
-
-	@Override
 	public Vector2f getSize() {
 		return size;
 	}
@@ -246,16 +236,5 @@ public class WidgetLabel extends WidgetBase implements Renderable {
 	public void setAntiAliased(boolean antiAliased) {
 		this.antiAliased = antiAliased;
 	}
-
-	@Override
-	public void setNeedsToUpdate(boolean flag) {
-		needsToUpdate = flag;		
-	}
-
-	@Override
-	public boolean needsToUpdate() {
-		return needsToUpdate;
-	}
-	
 
 }

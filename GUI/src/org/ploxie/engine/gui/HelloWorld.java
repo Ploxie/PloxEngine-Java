@@ -3,16 +3,11 @@ import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
-import org.ploxie.engine.gui.component.WidgetButton;
-import org.ploxie.engine.gui.component.WidgetLabel;
-import org.ploxie.engine.gui.component.WidgetPanel;
-import org.ploxie.engine.gui.component.WidgetWindow;
-import org.ploxie.engine.gui.event.ClickEvent;
-import org.ploxie.engine.gui.event.MouseDownEvent;
-import org.ploxie.engine.gui.event.actions.MouseAction;
-import org.ploxie.utils.Color;
 import org.ploxie.utils.Viewport;
 import org.ploxie.utils.math.vector.Vector2f;
+import org.ploxie.engine.gui2.WidgetManager;
+import org.ploxie.engine.gui2.component.WidgetPanel;
+import org.ploxie.engine.gui2.component.WidgetWindow;
 
 import java.nio.*;
 
@@ -76,8 +71,8 @@ public class HelloWorld {
             public void invoke(long window, double xpos, double ypos) {
             	mousePos = new Vector2f((float)xpos / WIDTH, (float)ypos / HEIGHT);
             	if(mouseDown) {
-            		MouseDownEvent event = new MouseDownEvent(mousePos);
-                	gui.sendEvent(event);
+            		//MouseDownEvent event = new MouseDownEvent(mousePos);
+                	//gui.sendEvent(event);
             	}
             	
             }
@@ -88,8 +83,8 @@ public class HelloWorld {
 
             @Override
             public void invoke(long window, int button, int action, int mods) {
-            	ClickEvent event = new ClickEvent(mousePos, action == GLFW_PRESS);
-            	gui.sendEvent(event);
+            	//ClickEvent event = new ClickEvent(mousePos, action == GLFW_PRESS);
+            	//gui.sendEvent(event);
             	
             	if(action == GLFW_RELEASE) {
             		mouseDown = false;
@@ -148,41 +143,25 @@ public class HelloWorld {
 		
 		gui = WidgetManager.create(new Viewport(0, WIDTH, 0, HEIGHT));
 		
+
+
 		WidgetWindow panel = new WidgetWindow();
-		panel.setPosition(0.25f,0.25f);
-		panel.setSize(0.5f,0.5f);
-		panel.setTitle("Window");
-		panel.setBackgroundColor(new Color(0.5f,0.5f,0.5f,1f));
+		panel.setPosition(0.25f, 0.25f);
+		panel.setScale(0.5f,0.5f);
+		
+		//panel.setBackgroundColor(new Color(0.5f,0.5f,0.5f,1f));
 		
 		
-		WidgetButton panel2 = new WidgetButton();
-		panel2.setPosition(0.0f,0.0f);
-		panel2.setSize(0.5f,0.5f);
-		panel2.setBackgroundColor(Color.RED);
-		panel2.setBorderColor(new Color(0,0,0,0.2f));
-		panel2.addOnMousePressAction(new MouseAction() {
-
-			@Override
-			public void execute(Vector2f point) {
-				panel2.setBackgroundColor(new Color(0.7f,0.7f,0.7f,1f));
-			}
-			
-		});
+		//WidgetCheckbox checkbox = new WidgetCheckbox();
+		//checkbox.setPosition(0.5f,0.5f);
 		
-		panel2.addOnMouseReleaseAction(new MouseAction() {
-
-			@Override
-			public void execute(Vector2f point) {
-				panel2.setBackgroundColor(new Color(0.8f,0.8f,0.8f,1f));
-			}
-			
-		});
 		
 		//WidgetLabel label = new WidgetLabel("Hallasdasdasdasd");
 		//label.setPosition(0.5f, 0.5f);
 		
-		gui.addWidget(panel);
-	//	gui.addWidget(label);
+		gui.addChild(panel);
+		
+		//panel.addChild(checkbox);
 		//panel.addChild(panel2);
 		//System.out.println(panel2.getPosition());
 		

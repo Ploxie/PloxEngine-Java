@@ -1,11 +1,11 @@
-package org.ploxie.engine.buffers.primitives;
+package org.ploxie.opengl.buffer.primitive;
 
 import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 
 import java.util.Random;
 
-import org.ploxie.engine.utils.BufferUtils;
 import org.ploxie.opengl.buffer.VBO;
+import org.ploxie.opengl.utilities.BufferUtils;
 
 public class Cube extends VBO{
 

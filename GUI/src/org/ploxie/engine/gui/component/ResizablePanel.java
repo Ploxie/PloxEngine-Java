@@ -25,6 +25,7 @@ public class ResizablePanel extends WidgetPanel{
 			return new Vector2f(s.x, EDGE_SIZE_IN_PIXELS / (float) screenDimensions.y);
 		}
 	};
+	
 	protected ClickableWidget bottom = new ClickableWidget() {
 		@Override
 		public Vector2f getSize() {
