@@ -2,6 +2,7 @@ package org.ploxie.engine.gui2.component;
 
 import java.util.List;
 
+import org.ploxie.engine.gui.event.WidgetEvent;
 import org.ploxie.engine.gui2.WidgetManager;
 import org.ploxie.opengl.shader.Shader;
 import org.ploxie.utils.math.matrix.Matrix4f;
@@ -44,8 +45,7 @@ public interface IWidget {
 		Vector2f scale = getScale();
 		Vector2i screenDimensions = getManager().getViewport().getDimensions();
 		setScale(scale.x, height / (float)screenDimensions.y);
-	}
-	
+	}	
 	
 	public void setScale(float x, float y);
 
@@ -55,6 +55,12 @@ public interface IWidget {
 	
 	public Vector2f getScale();
 	
+	public default void setPivot(float x, float y) {
+		setPivot(new Vector2f(x,y));
+	}
+	
+	public void setPivot(Vector2f pivot);
+	
 	public void addChild(IWidget child);	
 	
 	public List<IWidget> getChildren();
@@ -62,6 +68,8 @@ public interface IWidget {
 	public void setParent(IWidget parent);
 
 	public IWidget getParent();	
+	
+	public void handleEvent(WidgetEvent event);
 	
 	public void render(Shader shader);
 	

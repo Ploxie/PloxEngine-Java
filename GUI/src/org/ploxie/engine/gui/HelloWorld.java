@@ -5,6 +5,8 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 import org.ploxie.utils.Viewport;
 import org.ploxie.utils.math.vector.Vector2f;
+import org.ploxie.engine.gui.event.ClickEvent;
+import org.ploxie.engine.gui.event.MouseDownEvent;
 import org.ploxie.engine.gui2.WidgetManager;
 import org.ploxie.engine.gui2.component.WidgetPanel;
 import org.ploxie.engine.gui2.component.WidgetWindow;
@@ -71,8 +73,8 @@ public class HelloWorld {
             public void invoke(long window, double xpos, double ypos) {
             	mousePos = new Vector2f((float)xpos / WIDTH, (float)ypos / HEIGHT);
             	if(mouseDown) {
-            		//MouseDownEvent event = new MouseDownEvent(mousePos);
-                	//gui.sendEvent(event);
+            		MouseDownEvent event = new MouseDownEvent(mousePos);
+                	gui.handleEvent(event);
             	}
             	
             }
@@ -83,8 +85,8 @@ public class HelloWorld {
 
             @Override
             public void invoke(long window, int button, int action, int mods) {
-            	//ClickEvent event = new ClickEvent(mousePos, action == GLFW_PRESS);
-            	//gui.sendEvent(event);
+            	ClickEvent event = new ClickEvent(mousePos, action == GLFW_PRESS);
+            	gui.handleEvent(event);
             	
             	if(action == GLFW_RELEASE) {
             		mouseDown = false;

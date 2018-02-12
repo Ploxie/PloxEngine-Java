@@ -4,7 +4,6 @@ import org.ploxie.opengl.buffer.VBO;
 import org.ploxie.opengl.buffer.primitive.Quad;
 import org.ploxie.opengl.shader.Shader;
 import org.ploxie.utils.Color;
-import org.ploxie.utils.math.vector.Vector2i;
 
 public class WidgetPanel extends WidgetBase{
 
@@ -28,6 +27,7 @@ public class WidgetPanel extends WidgetBase{
 		shader.setUniform("borderColor", getBorderColor());
 		shader.setUniform("borderThickness", borderThickness);
 		shader.setUniform("scale", getWorldMatrix().getScale().xy());
+		
 		vbo.draw();
 		super.render(shader);		
 	}
@@ -46,5 +46,13 @@ public class WidgetPanel extends WidgetBase{
 	
 	public Color getBorderColor() {
 		return borderColor;
+	}
+	
+	public void setBorderThickness(int thickness) {
+		borderThickness = thickness;
+	}
+	
+	public int getBorderThickness() {
+		return borderThickness;
 	}
 }

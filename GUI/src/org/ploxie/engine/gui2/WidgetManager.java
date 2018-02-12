@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.glBlendFunc;
 import static org.lwjgl.opengl.GL11.glEnable;
 
+import org.ploxie.engine.gui.event.WidgetEvent;
 import org.ploxie.engine.gui2.component.IWidget;
 import org.ploxie.engine.gui2.component.WidgetBase;
 import org.ploxie.opengl.shader.Shader;
@@ -36,6 +37,10 @@ public class WidgetManager{
 	
 	public void addChild(IWidget widget) {
 		root.addChild(widget);
+	}
+	
+	public void handleEvent(WidgetEvent event) {
+		root.handleEvent(event);
 	}
 	
 	public Viewport getViewport() {
