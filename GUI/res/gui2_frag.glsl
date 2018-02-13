@@ -7,6 +7,7 @@ uniform vec4 backgroundColor;
 uniform vec4 borderColor;
 uniform int borderThickness;
 uniform vec2 scale;
+uniform sampler2D texture;
 
 float borders(vec2 uv, int borderThickness) {
 
@@ -31,7 +32,9 @@ void main() {
 	float background = 1.0f - borders;
 	float gradient = gradient(uv.y);
 
-	vec4 bg = (backgroundColor);
+	vec4 textureColor = texture2D(texture, uv);
+
+	vec4 bg = (backgroundColor) + (textureColor * textureColor.w) + (vec4(1,1,1,1)  * textureColor.w);
 	result = (bg * background);
 	result.xyz *= gradient;
 	result += borderColor * borders;

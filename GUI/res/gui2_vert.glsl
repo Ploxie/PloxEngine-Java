@@ -11,6 +11,8 @@ void main()
 {
 	uv = inUV;
 
+
+
 	vec4 outVertex = transformMatrix * vec4(inVertex, 1);
 
 	outVertex.y = 1-outVertex.y;

@@ -8,6 +8,8 @@ import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.engine.gui.event.ClickEvent;
 import org.ploxie.engine.gui.event.MouseDownEvent;
 import org.ploxie.engine.gui2.WidgetManager;
+import org.ploxie.engine.gui2.component.WidgetText;
+import org.ploxie.engine.gui2.component.WidgetCheckbox;
 import org.ploxie.engine.gui2.component.WidgetPanel;
 import org.ploxie.engine.gui2.component.WidgetWindow;
 
@@ -151,6 +153,9 @@ public class HelloWorld {
 		panel.setPosition(0.25f, 0.25f);
 		panel.setScale(0.5f,0.5f);
 		
+		
+		WidgetCheckbox checkbox = new WidgetCheckbox();
+		checkbox.setPosition(0,0);
 		//panel.setBackgroundColor(new Color(0.5f,0.5f,0.5f,1f));
 		
 		
@@ -162,7 +167,7 @@ public class HelloWorld {
 		//label.setPosition(0.5f, 0.5f);
 		
 		gui.addChild(panel);
-		
+		panel.addChild(checkbox);
 		//panel.addChild(checkbox);
 		//panel.addChild(panel2);
 		//System.out.println(panel2.getPosition());

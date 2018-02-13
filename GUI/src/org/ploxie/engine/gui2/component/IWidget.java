@@ -59,6 +59,41 @@ public interface IWidget {
 		setPivot(new Vector2f(x,y));
 	}
 	
+	public default Vector2f getWorldPosition() {
+		return getWorldMatrix().getTranslation().xy();
+	}
+	
+	public default Vector2i getAbsolutePosition() {
+		Vector2i screenDimensions = getManager().getViewport().getDimensions();
+		Vector2f pos = getPosition();
+		return new Vector2i((int)(pos.x * screenDimensions.x) , (int)(pos.y * screenDimensions.y));
+	}
+	
+	public default Vector2f getWorldScale() {
+		return getWorldMatrix().getScale().xy();
+	}
+	
+	public default Vector2i getSize() {
+		Vector2i screenDimensions = getManager().getViewport().getDimensions();
+		Vector2f scale = getWorldScale();
+		return new Vector2i((int)(scale.x * screenDimensions.x) , (int)(scale.y * screenDimensions.y));
+	}
+	
+	public void setLockedX(boolean locked);
+	public void setLockedY(boolean locked);
+	public void setLockedWidth(boolean locked);
+	public void setLockedHeight(boolean locked);
+	
+	public default void setLockedPosition(boolean locked) {
+		setLockedX(locked);
+		setLockedY(locked);
+	}
+	
+	public default void setLockedScale(boolean locked) {
+		setLockedWidth(locked);
+		setLockedHeight(locked);
+	}
+	
 	public void setPivot(Vector2f pivot);
 	
 	public void addChild(IWidget child);	
@@ -77,6 +112,10 @@ public interface IWidget {
 	
 	public Matrix4f getWorldMatrix();
 		
+	public default Vector2f getRelativePoint(Vector2f point) {
+		return point.clone().subtract(getPosition());
+	}
+	
 	public default WidgetManager getManager() {
 		return WidgetManager.getInstance();
 	}
