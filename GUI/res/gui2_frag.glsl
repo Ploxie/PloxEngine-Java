@@ -37,6 +37,6 @@ void main() {
 	vec4 bg = (backgroundColor) + (textureColor * textureColor.w) + (vec4(1,1,1,1)  * textureColor.w);
 	result = (bg * background);
 	result.xyz *= gradient;
-	result += borderColor * borders;
+	result += (borderColor * borders) + (backgroundColor * (1.0f - borderColor.w) * borders);
 	gl_FragColor = result;
 }

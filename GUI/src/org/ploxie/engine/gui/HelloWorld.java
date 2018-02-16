@@ -3,12 +3,14 @@ import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
+import org.ploxie.utils.Color;
 import org.ploxie.utils.Viewport;
 import org.ploxie.utils.math.vector.Vector2f;
 import org.ploxie.engine.gui.event.ClickEvent;
 import org.ploxie.engine.gui.event.MouseDownEvent;
 import org.ploxie.engine.gui2.WidgetManager;
 import org.ploxie.engine.gui2.component.WidgetText;
+import org.ploxie.engine.gui2.component.ResizablePanel;
 import org.ploxie.engine.gui2.component.WidgetCheckbox;
 import org.ploxie.engine.gui2.component.WidgetPanel;
 import org.ploxie.engine.gui2.component.WidgetWindow;
@@ -146,31 +148,14 @@ public class HelloWorld {
 		
 		
 		gui = WidgetManager.create(new Viewport(0, WIDTH, 0, HEIGHT));
-		
 
-
-		WidgetWindow panel = new WidgetWindow();
-		panel.setPosition(0.25f, 0.25f);
-		panel.setScale(0.5f,0.5f);
+		/*ResizablePanel panel = new ResizablePanel();
+		panel.setAnchorPosition(new Vector2f(0.25f, 0.25f));
+		panel.setAnchorScale(new Vector2f(0.75f,0.75f));		
+		panel.setBackgroundColor(Color.RED);*/
 		
-		
-		WidgetCheckbox checkbox = new WidgetCheckbox();
-		checkbox.setPosition(0,0);
-		//panel.setBackgroundColor(new Color(0.5f,0.5f,0.5f,1f));
-		
-		
-		//WidgetCheckbox checkbox = new WidgetCheckbox();
-		//checkbox.setPosition(0.5f,0.5f);
-		
-		
-		//WidgetLabel label = new WidgetLabel("Hallasdasdasdasd");
-		//label.setPosition(0.5f, 0.5f);
-		
+		WidgetPanel panel = new WidgetPanel();			
 		gui.addChild(panel);
-		panel.addChild(checkbox);
-		//panel.addChild(checkbox);
-		//panel.addChild(panel2);
-		//System.out.println(panel2.getPosition());
 		
 		
 		// Run the rendering loop until the user has attempted to close

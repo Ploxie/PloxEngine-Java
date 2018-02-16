@@ -7,91 +7,94 @@ import org.ploxie.utils.math.vector.Vector2f;
 public class ResizablePanel extends WidgetPanel {
 
 	private static final int BAR_SIZE = 10;
+	
+	private IWidget target = this; 
 
 	@Override
 	public void initialize() {
 		super.initialize();
 
 		ButtonBase top = new ButtonBase();
-		top.setScale(1.0f, 0.0f);
-		top.setHeight(BAR_SIZE);
-		top.setLockedHeight(true);
+		top.setAnchorScale(1.0f, 0.0f);
 		top.setPivot(0.0f, 1.0f);
+		top.setHeight(BAR_SIZE);
 		top.addOnMouseDownAction(getMoveTopAction());
 		addChild(top);
 
 		ButtonBase bottom = new ButtonBase();
-		bottom.setPosition(0.0f, 1.0f);
-		bottom.setScale(1.0f, 0.0f);
+		bottom.setAnchorTranslation(0.0f, 1.0f);
+		bottom.setAnchorScale(1.0f, 1.0f);
 		bottom.setHeight(BAR_SIZE);
-		bottom.setLockedHeight(true);
 		bottom.addOnMouseDownAction(getMoveBottomAction());
 		addChild(bottom);
 
 		ButtonBase left = new ButtonBase();
-		left.setScale(0.0f, 1.0f);
-		left.setWidth(BAR_SIZE);
-		left.setLockedWidth(true);
+		left.setAnchorScale(0.0f, 1.0f);
 		left.setPivot(1.0f, 0.0f);
+		left.setWidth(BAR_SIZE);
 		left.addOnMouseDownAction(getMoveLeftAction());
 		addChild(left);
 
 		ButtonBase right = new ButtonBase();
-		right.setPosition(1.0f, 0.0f);
-		right.setScale(0.0f, 1.0f);
+		right.setAnchorTranslation(1.0f, 0.0f);
+		right.setAnchorScale(1.0f, 1.0f);
 		right.setWidth(BAR_SIZE);
-		right.setLockedWidth(true);
 		right.addOnMouseDownAction(getMoveRightAction());
 		addChild(right);
 
 		ButtonBase topLeft = new ButtonBase();
+		topLeft.setAnchorScale(0.0f, 0.0f);
 		topLeft.setPivot(1.0f, 1.0f);
-		topLeft.setSize(BAR_SIZE, BAR_SIZE);
-		topLeft.setLockedScale(true);
+		topLeft.setSize(BAR_SIZE, BAR_SIZE);		
 		topLeft.addOnMouseDownAction(getMoveTopAction());
 		topLeft.addOnMouseDownAction(getMoveLeftAction());
 		addChild(topLeft);
 
 		ButtonBase topRight = new ButtonBase();
-		topRight.setPosition(1.0f, 0.0f);
+		topRight.setAnchorTranslation(1.0f, 0.0f);
+		topRight.setAnchorScale(1.0f, 0.0f);
 		topRight.setPivot(0.0f, 1.0f);
 		topRight.setSize(BAR_SIZE, BAR_SIZE);
-		topRight.setLockedScale(true);
 		topRight.addOnMouseDownAction(getMoveTopAction());
 		topRight.addOnMouseDownAction(getMoveRightAction());
 		addChild(topRight);
 
 		ButtonBase bottomLeft = new ButtonBase();
-		bottomLeft.setPosition(0.0f, 1.0f);
+		bottomLeft.setAnchorTranslation(0.0f, 1.0f);
+		bottomLeft.setAnchorScale(0.0f, 1.0f);
 		bottomLeft.setPivot(1.0f, 0.0f);
 		bottomLeft.setSize(BAR_SIZE, BAR_SIZE);
-		bottomLeft.setLockedScale(true);
 		bottomLeft.addOnMouseDownAction(getMoveBottomAction());
 		bottomLeft.addOnMouseDownAction(getMoveLeftAction());
 		addChild(bottomLeft);
 
 		ButtonBase bottomRight = new ButtonBase();
-		bottomRight.setPosition(1.0f, 1.0f);
-		bottomRight.setPivot(0.0f, 0.0f);
+		bottomRight.setAnchorTranslation(1.0f, 1.0f);
+		bottomRight.setAnchorScale(1.0f, 1.0f);
 		bottomRight.setSize(BAR_SIZE, BAR_SIZE);
-		bottomRight.setLockedScale(true);
 		bottomRight.addOnMouseDownAction(getMoveBottomAction());
 		bottomRight.addOnMouseDownAction(getMoveRightAction());
 		addChild(bottomRight);
 	}
 
+	public void setTarget(IWidget target) {
+		this.target = target;
+	}
+	
 	protected MouseAction getMoveTopAction() {
 		return new MouseAction() {
 
 			@Override
 			public void execute(Vector2f point) {
-				Vector2f position = getPosition();
-				Vector2f scale = getScale();
+				Vector2f position = target.getTranslation().clone();
+				Vector2f scale = target.getScale().clone();
+				Vector2f pivot = target.getPivot().clone();
 
-				scale.y += position.y - point.y;
-				position.y = point.y;
-				setScale(scale);
-				setPosition(position);
+				scale.y += (position.y - (pivot.y * scale.y)) - point.y;
+				position.y = point.y+ (pivot.y * scale.y);
+				
+				target.setScale(scale);
+				target.setTranslation(position);
 			}
 
 		};
@@ -102,14 +105,15 @@ public class ResizablePanel extends WidgetPanel {
 
 			@Override
 			public void execute(Vector2f point) {
-				Vector2f position = getPosition();
-				Vector2f scale = getScale();
-
-				scale.x += position.x - point.x;
-				position.x = point.x;
-
-				setScale(scale);
-				setPosition(position);
+				Vector2f position = target.getTranslation().clone();
+				Vector2f scale = target.getScale().clone();
+				Vector2f pivot = target.getPivot().clone();
+				
+				scale.x += (position.x - (pivot.x * scale.x)) - point.x;
+				position.x = point.x + (pivot.x * scale.x);	
+				
+				target.setScale(scale);
+				target.setTranslation(position);
 			}
 
 		};
@@ -120,12 +124,15 @@ public class ResizablePanel extends WidgetPanel {
 
 			@Override
 			public void execute(Vector2f point) {
-				Vector2f position = getPosition();
-				Vector2f scale = getScale();
+				Vector2f position = target.getTranslation().clone();
+				Vector2f scale = target.getScale().clone();
+				Vector2f pivot = target.getPivot().clone();
 
-				scale.y = point.y - position.y;
+				scale.y += point.y - (position.y + (pivot.y * scale.y));
+				position.y = point.y - (pivot.y * scale.y);
 
-				setScale(scale);
+				target.setScale(scale);
+				target.setTranslation(position);
 			}
 
 		};
@@ -136,12 +143,15 @@ public class ResizablePanel extends WidgetPanel {
 
 			@Override
 			public void execute(Vector2f point) {
-				Vector2f position = getPosition();
-				Vector2f scale = getScale();
+				Vector2f position = target.getTranslation().clone();
+				Vector2f scale = target.getScale().clone();
+				Vector2f pivot = target.getPivot().clone();
 
-				scale.x = point.x - position.x;
+				scale.x += point.x - (position.x + (pivot.x * scale.x));
+				position.x = point.x - (pivot.x * scale.x);
 
-				setScale(scale);
+				target.setScale(scale);
+				target.setTranslation(position);
 			}
 
 		};

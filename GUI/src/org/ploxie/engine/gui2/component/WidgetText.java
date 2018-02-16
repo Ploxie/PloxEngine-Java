@@ -75,8 +75,8 @@ public class WidgetText extends WidgetBase {
 		textWidth = width;
 		textHeight = height;
 		
-		lockedWidth = true;
-		lockedHeight = true;
+		//lockedWidth = true;
+		//lockedHeight = true;
 
 		int usage = drawStatic ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
 

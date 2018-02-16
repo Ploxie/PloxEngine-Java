@@ -16,7 +16,7 @@ public class WidgetPanel extends WidgetBase implements IBackground {
 	protected Color backgroundColor = new Color(0, 0, 0, 0);
 	protected Color borderColor = new Color(0, 0, 0, 0);
 
-	protected int borderThickness = 1;
+	protected int borderThickness = 0;
 	protected Texture texture;
 
 	@Override

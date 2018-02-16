@@ -82,6 +82,10 @@ public class Vector2i implements Cloneable {
 	public String toString() {
 		return "[x:" + x() + ", y:" + y() + "]";
 	}
+	
+	public Vector2f toFloat() {
+		return new Vector2f(x, y);
+	}
 
 	@Override
 	public int hashCode() {

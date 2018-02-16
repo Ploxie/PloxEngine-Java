@@ -498,6 +498,17 @@ public class Matrix4f implements Cloneable {
         return this;
 	}
 
+	public void setScale(Vector2f scale) {
+		values[0] = scale.x;
+		values[5] = scale.y;
+	}
+	
+	public void setScale(Vector3f scale) {
+		values[0] = scale.x;
+		values[5] = scale.y;
+		values[10] = scale.z;		
+	}
+	
 	public void setScale(float x, float y, float z) {
 		values[0] = x;
 		values[5] = y;

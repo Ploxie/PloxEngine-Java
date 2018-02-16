@@ -17,7 +17,7 @@ public class WidgetLabel extends WidgetPanel{
 	@Override
 	public void initialize() {	
 		super.initialize();
-		setLockedScale(true);
+		//setLockedScale(true);
 		addChild(text);
 	}
 	

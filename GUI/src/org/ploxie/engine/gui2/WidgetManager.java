@@ -50,6 +50,7 @@ public class WidgetManager{
 	public static WidgetManager create(Viewport viewport) {
 		if(instance == null) {
 			instance = new WidgetManager(viewport);
+			instance.root.initialize();
 		}
 		return instance;
 	}

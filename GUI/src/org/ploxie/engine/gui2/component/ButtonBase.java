@@ -9,7 +9,6 @@ import org.ploxie.engine.gui.event.WidgetEvent;
 import org.ploxie.engine.gui.event.actions.MouseAction;
 import org.ploxie.utils.math.matrix.Matrix4f;
 import org.ploxie.utils.math.vector.Vector2f;
-import org.ploxie.utils.math.vector.Vector2i;
 
 public class ButtonBase extends WidgetBase implements IButton {
 
@@ -48,9 +47,10 @@ public class ButtonBase extends WidgetBase implements IButton {
 
 	@Override
 	public boolean onMousePress(Vector2f point) {
-		if (!isInside(point)) {
+		if (!isInside(point)) {			
 			return false;
-		}
+		}		
+		
 		mouseDown = true;
 		for (MouseAction action : onMousePressActions) {
 			action.execute(point);

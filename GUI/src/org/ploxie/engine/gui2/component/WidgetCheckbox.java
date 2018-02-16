@@ -16,7 +16,7 @@ public class WidgetCheckbox extends WidgetViewport implements IBackground{
 		super.initialize();
 		button.setBackgroundColor(Color.RED);
 		button.setSize(15, 15);	
-		button.setLockedScale(true);
+		//button.setLockedScale(true);
 		
 		//label.setBackgroundColor(Color.BLUE);
 		//panel.setBackgroundColor(Color.BLUE);
